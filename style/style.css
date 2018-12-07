@@ -489,7 +489,7 @@ p{
   margin-left: -20px;
 }
 
-.bubbles{
+.bubbles, .sankey{
   position:absolute;
   left: 15%;
   margin-top: 6.74vh;
@@ -504,7 +504,7 @@ p{
   margin-left: 1%;
   font-family: "hn_thin";
 }
-.bubbles select:first-of-type{
+.bubbles select:first-of-type, .sankey select{
   position: absolute;
   top: 0;
   margin-top: 1%;
@@ -537,4 +537,38 @@ p{
 
 .bubbles text{
   alignment-baseline: central;
+}
+
+.node rect {
+  fill-opacity: .9;
+  stroke: none !important;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  font-size: 12px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+
+#sec08 h3{
+  color: #eb652d;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 5%;
 }

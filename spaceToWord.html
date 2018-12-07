@@ -9,11 +9,11 @@
 <script src="./js/jquery.easing.js"></script>
 <script src="./js/jquery.singular.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://rawgit.com/newrelic-forks/d3-plugins-sankey/v1.1.0/sankey.js"></script>
+<script src="https://rawgit.com/misoproject/d3.chart/master/d3.chart.min.js"></script>
+<script src="./js/d3.chart.sankey.min.js"></script>
 <script src="./js/d3.layout.cloud.js"></script>
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-<script src="./data/ad_fb_survey.js"></script>
-<script src="./data/ad_fb_vectors.js"></script>
-<script src="./data/interview_word_data.js"></script>
 <script>
 $(function() {
     $('.js-singular').singular({
@@ -37,6 +37,168 @@ $(function() {
   <div class="mod-singular js-singular">
     <!--page_1 Weird Words-->
     <section id="sec01" class="mod-singular-section">
+      <script>
+        var AD_FB_DATA = 
+        {
+          "accommodation": 1,
+          "acrossed": 2,
+          "activate": 48,
+          "adjacency": 13,
+          "aesthetic": 7,
+          "angulation": 2,
+          "anthropomorphic": 2,
+          "archetype": 1,
+          "architectonic": 12,
+          "articulate": 10,
+          "assemblage": 6,
+          "atelier": 3,
+          "beam": 2,
+          "bespoke": 4,
+          "bifurcate": 7,
+          "built environment": 2,
+          "cantilever": 10,
+          "capacious": 2,
+          "celebrate": 1,
+          "charade": 1,
+          "charette": 1,
+          "charrette": 18,
+          "collision": 2,
+          "community": 5,
+          "concept": 29,
+          "concretization": 2,
+          "condition": 2,
+          "conservationism": 2,
+          "constructability": 1,
+          "contemplation ": 1,
+          "context": 1,
+          "continuous": 1,
+          "crossprogramming": 1,
+          "curvilinear": 33,
+          "datum": 1,
+          "deconstructivism": 2,
+          "detachment": 1,
+          "device": 2,
+          "diagramatic": 19,
+          "dichotomy": 19,
+          "didactic": 4,
+          "digression": 3,
+          "duality": 6,
+          "elastomeric": 2,
+          "embody": 31,
+          "embrace": 1,
+          "ephemeral": 8,
+          "ergonomic": 3,
+          "esoteric": 1,
+          "expressive1": 1,
+          "exurbia": 6,
+          "facade": 8,
+          "fenestration": 22,
+          "flaunching": 2,
+          "flimsy": 2,
+          "form language": 1,
+          "generic": 3,
+          "genius loci": 5,
+          "gentrification": 3,
+          "green": 10,
+          "haptic": 2,
+          "hierarchy": 2,
+          "homogeneous": 1,
+          "honesty of materials": 1,
+          "horizontality": 4,
+          "identity": 2,
+          "indicative": 3,
+          "inform": 1,
+          "integrity of the design": 1,
+          "interpretate": 3,
+          "interstitial": 72,
+          "intervention": 2,
+          "iteration": 11,
+          "juxtaposition": 81,
+          "laminar": 1,
+          "layers": 1,
+          "local wisdom": 1,
+          "marginal": 2,
+          "massing": 6,
+          "materiality": 12,
+          "minimalistic": 3,
+          "modern": 4,
+          "moment": 5,
+          "monolithic ": 1,
+          "morphology": 10,
+          "mullion": 2,
+          "narrative": 1,
+          "negative space": 9,
+          "negotiate": 2,
+          "nexus": 2,
+          "niche": 1,
+          "nodes": 8,
+          "notion": 1,
+          "nuance": 4,
+          "opacity": 4,
+          "organic": 16,
+          "orientate": 1,
+          "ovoid": 12,
+          "palimpsest": 22,
+          "paradigm": 8,
+          "parallax": 7,
+          "parametric": 12,
+          "parti": 30,
+          "pastiche": 6,
+          "pattern": 1,
+          "penetrate": 2,
+          "permaculture": 6,
+          "perspective": 12,
+          "phenomenology": 14,
+          "pheripheral": 2,
+          "pilotis": 6,
+          "play with": 7,
+          "poche": 25,
+          "poetic": 2,
+          "positioned": 1,
+          "post-modern": 1,
+          "preliminary": 46,
+          "pressure": 1,
+          "program": 7,
+          "progression": 3,
+          "public realm": 10,
+          "rationalize": 1,
+          "reading": 5,
+          "rebate": 2,
+          "rectilinear": 13,
+          "redundant": 4,
+          "resuscitate": 2,
+          "rigor": 1,
+          "rigorous": 2,
+          "robust": 3,
+          "scalable": 3,
+          "scale": 4,
+          "shear": 1,
+          "simultaneity": 3,
+          "slophopper": 1,
+          "spatiality": 27,
+          "structural": 1,
+          "sublime": 3,
+          "sustainable": 54,
+          "synchronicity": 1,
+          "tangibility": 2,
+          "tectonic": 23,
+          "tension": 2,
+          "tesselate": 1,
+          "transient": 4,
+          "transparency": 1,
+          "typology": 16,
+          "uniformity": 1,
+          "urban fabric": 71,
+          "utilitarian": 3,
+          "vernacular": 45,
+          "verticality": 9,
+          "vierendeel": 2,
+          "void": 38,
+          "wholistic": 1,
+          "wonky": 2,
+          "zeitgeist": 6
+        }
+      </script>
       <div class="mod-singular-section-in">
         <h2 class="mod-singular-hdng">Architects use weird words</h2>
         <div class="container">
@@ -86,6 +248,639 @@ $(function() {
 
     <!--page_2 Power of language-->
     <section id="sec02" class="mod-singular-section">
+      <script>
+        var AD_FB_VECTORS = 
+          {
+            "accommodation": {
+              "x": 1.7909070253372192,
+              "y": 5.199248790740967
+            },
+            "acrossed": {
+              "x": 4.966628551483154,
+              "y": -13.5914888381958
+            },
+            "activate": {
+              "x": -3.1872639656066895,
+              "y": -3.7757577896118164
+            },
+            "adjacency": {
+              "x": 4.89415979385376,
+              "y": 3.2849392890930176
+            },
+            "aesthetic": {
+              "x": 4.27849817276001,
+              "y": -8.193273544311523
+            },
+            "angulation": {
+              "x": 0.27638062834739685,
+              "y": 4.75264835357666
+            },
+            "anthropomorphic": {
+              "x": 4.468055725097656,
+              "y": -8.688803672790527
+            },
+            "archetype": {
+              "x": -3.845477342605591,
+              "y": -0.1725088506937027
+            },
+            "architectonic": {
+              "x": 5.881283760070801,
+              "y": -11.679116249084473
+            },
+            "articulate": {
+              "x": -2.5909976959228516,
+              "y": -3.3145358562469482
+            },
+            "assemblage": {
+              "x": -3.936276912689209,
+              "y": -1.6892828941345215
+            },
+            "atelier": {
+              "x": 6.854276657104492,
+              "y": 3.1062028408050537
+            },
+            "beam": {
+              "x": -4.141617774963379,
+              "y": 3.151318073272705
+            },
+            "bespoke": {
+              "x": -2.2947869300842285,
+              "y": 2.2191338539123535
+            },
+            "bifurcate": {
+              "x": 0.9674699902534485,
+              "y": -4.662876605987549
+            },
+            "built environment": {
+              "x": -1.6024690866470337,
+              "y": -7.860381603240967
+            },
+            "cantilever": {
+              "x": -3.0502524375915527,
+              "y": -1.2163517475128174
+            },
+            "capacious": {
+              "x": 5.752742767333984,
+              "y": -8.6657133102417
+            },
+            "celebrate": {
+              "x": -2.0073647499084473,
+              "y": -2.9107437133789062
+            },
+            "charade": {
+              "x": 0.23756714165210724,
+              "y": -2.332772731781006
+            },
+            "charette": {
+              "x": -0.23996227979660034,
+              "y": 6.008988380432129
+            },
+            "charrette": {
+              "x": -0.5276282429695129,
+              "y": 5.954497337341309
+            },
+            "collision": {
+              "x": 2.6242053508758545,
+              "y": 3.8280296325683594
+            },
+            "community": {
+              "x": 1.6562198400497437,
+              "y": 3.4298176765441895
+            },
+            "concept": {
+              "x": -1.3111331462860107,
+              "y": 2.1650943756103516
+            },
+            "concretization": {
+              "x": 2.4532554149627686,
+              "y": 3.951918363571167
+            },
+            "condition": {
+              "x": 0.39612269401550293,
+              "y": 5.616541862487793
+            },
+            "conservationism": {
+              "x": 1.9932762384414673,
+              "y": 2.6031830310821533
+            },
+            "constructability": {
+              "x": 3.2167112827301025,
+              "y": 3.4141483306884766
+            },
+            "contemplation ": {
+              "x": 2.4101781845092773,
+              "y": 4.50939416885376
+            },
+            "context": {
+              "x": 1.636203646659851,
+              "y": -0.7174682021141052
+            },
+            "continuous": {
+              "x": 4.729686260223389,
+              "y": -10.156527519226074
+            },
+            "crossprogramming": {
+              "x": 7.144711494445801,
+              "y": -1.6812050342559814
+            },
+            "curvilinear": {
+              "x": 1.4644864797592163,
+              "y": -4.140649795532227
+            },
+            "datum": {
+              "x": -0.4672927260398865,
+              "y": 3.5926191806793213
+            },
+            "deconstructivism": {
+              "x": 2.071451425552368,
+              "y": 1.5028868913650513
+            },
+            "detachment": {
+              "x": 3.3524506092071533,
+              "y": -0.4104214906692505
+            },
+            "device": {
+              "x": 1.3417024612426758,
+              "y": 4.47659969329834
+            },
+            "diagramatic": {
+              "x": 3.6490275859832764,
+              "y": -7.676461696624756
+            },
+            "dichotomy": {
+              "x": -1.219057321548462,
+              "y": 2.913938522338867
+            },
+            "didactic": {
+              "x": 7.508458137512207,
+              "y": -9.421728134155273
+            },
+            "digression": {
+              "x": 2.907829523086548,
+              "y": 2.084550619125366
+            },
+            "duality": {
+              "x": 1.8598124980926514,
+              "y": 3.07806134223938
+            },
+            "elastomeric": {
+              "x": 5.362883567810059,
+              "y": -8.381512641906738
+            },
+            "embody": {
+              "x": -4.558554172515869,
+              "y": -1.73092782497406
+            },
+            "embrace": {
+              "x": -0.3524366021156311,
+              "y": -1.5546189546585083
+            },
+            "ephemeral": {
+              "x": 4.465031147003174,
+              "y": -9.972635269165039
+            },
+            "ergonomic": {
+              "x": 5.847946643829346,
+              "y": -9.644123077392578
+            },
+            "esoteric": {
+              "x": 5.9687604904174805,
+              "y": -11.056977272033691
+            },
+            "expressive1": {
+              "x": -3.6131441593170166,
+              "y": 1.4696016311645508
+            },
+            "exurbia": {
+              "x": -5.84891939163208,
+              "y": 2.059614658355713
+            },
+            "facade": {
+              "x": 0.017603730782866478,
+              "y": -2.761502981185913
+            },
+            "fenestration": {
+              "x": 2.3193209171295166,
+              "y": 6.171624183654785
+            },
+            "flaunching": {
+              "x": 7.131283760070801,
+              "y": -1.7315430641174316
+            },
+            "flimsy": {
+              "x": 3.5778932571411133,
+              "y": -8.325201988220215
+            },
+            "form language": {
+              "x": 4.787067413330078,
+              "y": 1.467542052268982
+            },
+            "generic": {
+              "x": 6.9415283203125,
+              "y": -9.689003944396973
+            },
+            "genius loci": {
+              "x": 4.404569149017334,
+              "y": 1.4483263492584229
+            },
+            "gentrification": {
+              "x": 2.9202184677124023,
+              "y": 1.034167766571045
+            },
+            "green": {
+              "x": 3.064589262008667,
+              "y": -10.656049728393555
+            },
+            "haptic": {
+              "x": 3.838366985321045,
+              "y": -7.840893268585205
+            },
+            "hierarchy": {
+              "x": 3.700826644897461,
+              "y": -4.8131890296936035
+            },
+            "homogeneous": {
+              "x": 5.29550838470459,
+              "y": -8.712180137634277
+            },
+            "honesty of materials": {
+              "x": -2.9043703079223633,
+              "y": -7.421055793762207
+            },
+            "horizontality": {
+              "x": 2.958688974380493,
+              "y": 5.2416605949401855
+            },
+            "identity": {
+              "x": 3.871244430541992,
+              "y": 4.80949592590332
+            },
+            "indicative": {
+              "x": 7.411221027374268,
+              "y": -10.964573860168457
+            },
+            "inform": {
+              "x": -0.3469248116016388,
+              "y": -4.261301517486572
+            },
+            "integrity of the design": {
+              "x": -2.8279197216033936,
+              "y": -7.360112190246582
+            },
+            "interpretate": {
+              "x": -2.649101495742798,
+              "y": -2.520176410675049
+            },
+            "interstitial": {
+              "x": 4.9569292068481445,
+              "y": -9.495240211486816
+            },
+            "intervention": {
+              "x": 0.5952149629592896,
+              "y": 2.4275331497192383
+            },
+            "iteration": {
+              "x": 3.6990699768066406,
+              "y": 5.386371612548828
+            },
+            "juxtaposition": {
+              "x": 4.62630033493042,
+              "y": 6.334693908691406
+            },
+            "laminar": {
+              "x": 6.1615891456604,
+              "y": -6.928583145141602
+            },
+            "layers": {
+              "x": -7.24699068069458,
+              "y": 1.4026635885238647
+            },
+            "local wisdom": {
+              "x": -0.9219048023223877,
+              "y": -7.907882213592529
+            },
+            "marginal": {
+              "x": 5.498506546020508,
+              "y": -10.373461723327637
+            },
+            "massing": {
+              "x": 7.124361038208008,
+              "y": -1.5556007623672485
+            },
+            "materiality": {
+              "x": 3.0183451175689697,
+              "y": 2.7999212741851807
+            },
+            "minimalistic": {
+              "x": 3.663566827774048,
+              "y": -7.106812953948975
+            },
+            "modern": {
+              "x": 5.927098274230957,
+              "y": -6.832528591156006
+            },
+            "moment": {
+              "x": 0.4343715012073517,
+              "y": 0.5205560326576233
+            },
+            "monolithic ": {
+              "x": 4.8955230712890625,
+              "y": -11.069384574890137
+            },
+            "morphology": {
+              "x": -0.6224800944328308,
+              "y": 1.4123575687408447
+            },
+            "mullion": {
+              "x": 1.5543817281723022,
+              "y": 3.7399072647094727
+            },
+            "narrative": {
+              "x": 3.0398099422454834,
+              "y": -5.559212684631348
+            },
+            "negative space": {
+              "x": -0.9363523125648499,
+              "y": -7.848891735076904
+            },
+            "negotiate": {
+              "x": -2.123983144760132,
+              "y": -3.103607416152954
+            },
+            "nexus": {
+              "x": -4.18762731552124,
+              "y": 3.1490602493286133
+            },
+            "niche": {
+              "x": -1.5070018768310547,
+              "y": 4.112684726715088
+            },
+            "nodes": {
+              "x": -7.254666328430176,
+              "y": 1.387450098991394
+            },
+            "notion": {
+              "x": 2.968740463256836,
+              "y": -0.5222746133804321
+            },
+            "nuance": {
+              "x": 4.342570781707764,
+              "y": -1.6065516471862793
+            },
+            "opacity": {
+              "x": 4.185763835906982,
+              "y": 3.764467716217041
+            },
+            "organic": {
+              "x": 5.756021022796631,
+              "y": -12.25593090057373
+            },
+            "orientate": {
+              "x": -2.365217924118042,
+              "y": -1.4949054718017578
+            },
+            "ovoid": {
+              "x": -2.438072443008423,
+              "y": -0.1860387921333313
+            },
+            "palimpsest": {
+              "x": 2.3119771480560303,
+              "y": -4.510158538818359
+            },
+            "paradigm": {
+              "x": -2.713440418243408,
+              "y": 2.25598406791687
+            },
+            "parallax": {
+              "x": 0.2712261378765106,
+              "y": -4.23767614364624
+            },
+            "parametric": {
+              "x": 6.368813514709473,
+              "y": -10.865374565124512
+            },
+            "parti": {
+              "x": -3.036073923110962,
+              "y": 0.9466248750686646
+            },
+            "pastiche": {
+              "x": 4.194540023803711,
+              "y": 2.855729579925537
+            },
+            "pattern": {
+              "x": -0.1024961993098259,
+              "y": 2.004387140274048
+            },
+            "penetrate": {
+              "x": -2.7768492698669434,
+              "y": -2.9712109565734863
+            },
+            "permaculture": {
+              "x": -0.45762425661087036,
+              "y": 2.9785144329071045
+            },
+            "perspective": {
+              "x": 2.063814640045166,
+              "y": -0.6030516624450684
+            },
+            "phenomenology": {
+              "x": -1.4659373760223389,
+              "y": 1.1328792572021484
+            },
+            "pheripheral": {
+              "x": 4.538824558258057,
+              "y": -7.289200782775879
+            },
+            "pilotis": {
+              "x": -5.916713714599609,
+              "y": 2.064253091812134
+            },
+            "play with": {
+              "x": -2.540543556213379,
+              "y": -6.676726341247559
+            },
+            "poche": {
+              "x": -1.8357362747192383,
+              "y": 4.131866455078125
+            },
+            "poetic": {
+              "x": 3.3049023151397705,
+              "y": -8.884883880615234
+            },
+            "positioned": {
+              "x": 4.907332897186279,
+              "y": -13.604911804199219
+            },
+            "post-modern": {
+              "x": -0.6285457611083984,
+              "y": -6.909865856170654
+            },
+            "preliminary": {
+              "x": 6.241201877593994,
+              "y": -9.761030197143555
+            },
+            "pressure": {
+              "x": 0.8766740560531616,
+              "y": 3.1636862754821777
+            },
+            "program": {
+              "x": 1.3302799463272095,
+              "y": 6.090495586395264
+            },
+            "progression": {
+              "x": 1.5911563634872437,
+              "y": 2.792140007019043
+            },
+            "public realm": {
+              "x": -0.3527773916721344,
+              "y": -7.489912986755371
+            },
+            "rationalize": {
+              "x": -1.868615984916687,
+              "y": -1.7160565853118896
+            },
+            "reading": {
+              "x": 6.816258907318115,
+              "y": 0.44946882128715515
+            },
+            "rebate": {
+              "x": -0.9681186079978943,
+              "y": -0.6999679207801819
+            },
+            "rectilinear": {
+              "x": 5.129912376403809,
+              "y": -5.971033096313477
+            },
+            "redundant": {
+              "x": 3.920830011367798,
+              "y": -9.020955085754395
+            },
+            "resuscitate": {
+              "x": -2.316087245941162,
+              "y": -2.125494956970215
+            },
+            "rigor": {
+              "x": -2.462249755859375,
+              "y": -0.03282036632299423
+            },
+            "rigorous": {
+              "x": 6.361537456512451,
+              "y": -10.19422721862793
+            },
+            "robust": {
+              "x": 4.315916061401367,
+              "y": -10.79234504699707
+            },
+            "scalable": {
+              "x": 2.9229063987731934,
+              "y": -9.453568458557129
+            },
+            "scale": {
+              "x": 1.5174200534820557,
+              "y": -2.273085594177246
+            },
+            "shear": {
+              "x": 1.6194396018981934,
+              "y": -4.160684585571289
+            },
+            "simultaneity": {
+              "x": 3.3921592235565186,
+              "y": 3.955014705657959
+            },
+            "slophopper": {
+              "x": 0.3869180977344513,
+              "y": 3.557755470275879
+            },
+            "spatiality": {
+              "x": 1.4382518529891968,
+              "y": 4.924699306488037
+            },
+            "structural": {
+              "x": 5.902129173278809,
+              "y": -9.642876625061035
+            },
+            "sublime": {
+              "x": 3.9881787300109863,
+              "y": -11.66901969909668
+            },
+            "sustainable": {
+              "x": 7.643049716949463,
+              "y": -10.435297012329102
+            },
+            "synchronicity": {
+              "x": 3.5337812900543213,
+              "y": 4.157525539398193
+            },
+            "tangibility": {
+              "x": 3.05344295501709,
+              "y": 4.598428249359131
+            },
+            "tectonic": {
+              "x": 5.099820613861084,
+              "y": -7.460510730743408
+            },
+            "tension": {
+              "x": 2.968228340148926,
+              "y": 5.410539627075195
+            },
+            "tesselate": {
+              "x": -1.9365500211715698,
+              "y": -2.6626453399658203
+            },
+            "transient": {
+              "x": 6.22163724899292,
+              "y": -7.785931587219238
+            },
+            "transparency": {
+              "x": 5.077112197875977,
+              "y": 4.058925628662109
+            },
+            "typology": {
+              "x": 1.245854139328003,
+              "y": 2.2633349895477295
+            },
+            "uniformity": {
+              "x": 4.64741325378418,
+              "y": 4.003684997558594
+            },
+            "urban fabric": {
+              "x": -0.7585229873657227,
+              "y": -7.900867462158203
+            },
+            "utilitarian": {
+              "x": 6.872744560241699,
+              "y": -8.756392478942871
+            },
+            "vernacular": {
+              "x": 6.92931604385376,
+              "y": -7.53441858291626
+            },
+            "verticality": {
+              "x": 3.699493885040283,
+              "y": 4.78835391998291
+            },
+            "vierendeel": {
+              "x": 1.0515164136886597,
+              "y": 0.9830729961395264
+            },
+            "void": {
+              "x": 1.3292328119277954,
+              "y": -4.742421627044678
+            },
+            "wholistic": {
+              "x": 3.657193899154663,
+              "y": -9.91494369506836
+            },
+            "wonky": {
+              "x": 5.657634735107422,
+              "y": -13.513795852661133
+            },
+            "zeitgeist": {
+              "x": 3.098158121109009,
+              "y": -2.1118335723876953
+            }
+          }
+      </script>
       <div class="mod-singular-section-in">
         <h2 class="mod-singular-hdng">Why is it so hard to describe spaces?</h2>
         <div class="container">
@@ -171,8 +966,8 @@ $(function() {
           <div class="exp3">
             <p>At the step of the thesis, I'm eager to find out what kind of words and sentences people tend to use to describe spaces, what kinds of pattern can I extract, and what could it mean for the final design tool. I decided to interview people ask them to describe an interior space and analyze their responses.</p>
             <p>I have chosen the <a href="./../imgs/UC-Black-Chairs.jpg" target="_blank">UC Black Chair space</a> as a case study example, because it's unavoidable to most people on campus. Initially, I wished to interview different groups of people and find out more about the difference in their perceptions, but I switched to only interviewing architecture/design students half way, to aim to help building the final product.</p>
-            <p>The interviewees are asked about 1. How would they <em>introduce</em> the space to someone who has never been there; 2. Describe the <em>specific mental image</em> about the space; 3. If there's any professional comments about the space.</p>
-            <p>On the left is a sample interview. In the actual process, I often needed to guide the interviewee for a more meaningful response. A total of 45 architecture students were interviewed. These are added to the dataset and analyzed by myself and NLP libraries. I also added 20 Non-architecture major interviews with excellent responses.</p>
+            <p>The interviewees are asked about 1. How would they <em>introduce</em> the space to someone who has never been there <em>(design intention)</em>; 2. Describe the <em>specific mental image</em> about the space <em>(details of the space)</em>; 3. If there's any professional comments about the space.</p>
+            <p>On the left is a sample interview. In the actual process, I often needed to guide the interviewee for a more meaningful response. A total of 45 architecture students were interviewed. These are added to the <a href ="https://pastebin.com/uegMnsdg" target="_blank">dataset</a> and analyzed by myself and NLP libraries. I also added 20 Non-architecture major interviews with excellent responses.</p>
           </div>
         </div>
 
@@ -185,6 +980,4699 @@ $(function() {
     <!--page_6 Visualization-->
     <section id="sec06" class="mod-singular-section">
       <div class="mod-singular-section-in">
+        <script>
+   var INTERVIEW_WORDS=     [
+  {
+    "children": [
+      {
+        "attitude": 0.0,
+        "name": "2-story",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.759515643119812,
+        "y": 7.659733295440674
+      },
+      {
+        "attitude": 0.0,
+        "name": "academic",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.401885032653809,
+        "y": -4.243406295776367
+      },
+      {
+        "attitude": 0.0,
+        "name": "access",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.5188369750976562,
+        "y": 3.5198490619659424
+      },
+      {
+        "attitude": 0.0,
+        "name": "area",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.12554931640625,
+        "y": 5.1807332038879395
+      },
+      {
+        "attitude": 0.0,
+        "name": "around",
+        "type": "ADP",
+        "value": 4,
+        "x": 7.596351146697998,
+        "y": 0.99704509973526
+      },
+      {
+        "attitude": 0.0,
+        "name": "atrium",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.0428659915924072,
+        "y": 5.074948310852051
+      },
+      {
+        "attitude": -0.6,
+        "name": "awkward",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.1056013107299805,
+        "y": -4.899973392486572
+      },
+      {
+        "attitude": 0.0,
+        "name": "big",
+        "type": "ADJ",
+        "value": 4,
+        "x": 8.446518898010254,
+        "y": -5.82635498046875
+      },
+      {
+        "attitude": 0.0,
+        "name": "bunch",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.8183131217956543,
+        "y": -1.4926928281784058
+      },
+      {
+        "attitude": 0.1,
+        "name": "busy",
+        "type": "ADJ",
+        "value": 3,
+        "x": 11.245223045349121,
+        "y": -6.49559211730957
+      },
+      {
+        "attitude": 0.30000000000000004,
+        "name": "calm",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.8144378662109375,
+        "y": -3.722468376159668
+      },
+      {
+        "attitude": -0.5000000000000001,
+        "name": "casually",
+        "type": "ADV",
+        "value": 1,
+        "x": 9.655004501342773,
+        "y": -0.625438392162323
+      },
+      {
+        "attitude": 0.0,
+        "name": "ceiling",
+        "type": "NOUN",
+        "value": 2,
+        "x": -4.532339572906494,
+        "y": 6.980999946594238
+      },
+      {
+        "attitude": -0.1,
+        "name": "center",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.05503212660551071,
+        "y": 3.7268729209899902
+      },
+      {
+        "attitude": 0.0,
+        "name": "central",
+        "type": "ADJ",
+        "value": 2,
+        "x": 8.195334434509277,
+        "y": -4.240387916564941
+      },
+      {
+        "attitude": 0.0,
+        "name": "chair",
+        "type": "NOUN",
+        "value": 5,
+        "x": -3.39058256149292,
+        "y": 5.88920259475708
+      },
+      {
+        "attitude": 0.0,
+        "name": "chill",
+        "type": "VERB",
+        "value": 1,
+        "x": -2.660489320755005,
+        "y": -0.04274114593863487
+      },
+      {
+        "attitude": 0.0,
+        "name": "circular",
+        "type": "ADJ",
+        "value": 3,
+        "x": 8.451778411865234,
+        "y": -4.758450031280518
+      },
+      {
+        "attitude": 0.0,
+        "name": "cluster",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.6049349308013916,
+        "y": 5.164303302764893
+      },
+      {
+        "attitude": 0.0,
+        "name": "coffee",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.39242696762085,
+        "y": 4.769652843475342
+      },
+      {
+        "attitude": 0.0,
+        "name": "come here",
+        "type": "VERB",
+        "value": 1,
+        "x": 5.10416841506958,
+        "y": 1.7208819389343262
+      },
+      {
+        "attitude": 0.4,
+        "name": "comfortable",
+        "type": "ADJ",
+        "value": 2,
+        "x": 10.722801208496094,
+        "y": -5.9988694190979
+      },
+      {
+        "attitude": -0.3,
+        "name": "common",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.138921737670898,
+        "y": -3.98297119140625
+      },
+      {
+        "attitude": 0.0,
+        "name": "communal",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.86538028717041,
+        "y": -4.490283966064453
+      },
+      {
+        "attitude": 0.0,
+        "name": "conservation",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.8136508464813232,
+        "y": 6.969801425933838
+      },
+      {
+        "attitude": 0.0,
+        "name": "convenience",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.741774082183838,
+        "y": 5.427799224853516
+      },
+      {
+        "attitude": 0.0,
+        "name": "convenient",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.55424976348877,
+        "y": -2.9844861030578613
+      },
+      {
+        "attitude": 0.0,
+        "name": "crowd",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.445356845855713,
+        "y": 0.5377106666564941
+      },
+      {
+        "attitude": 0.0,
+        "name": "day",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.3375146389007568,
+        "y": 6.461853981018066
+      },
+      {
+        "attitude": 0.0,
+        "name": "deep",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.588139057159424,
+        "y": -6.959292888641357
+      },
+      {
+        "attitude": 0.0,
+        "name": "design",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.536318778991699,
+        "y": 4.051229953765869
+      },
+      {
+        "attitude": 0.0,
+        "name": "different",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.623173713684082,
+        "y": -5.485695838928223
+      },
+      {
+        "attitude": 0.0,
+        "name": "distance",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.836300849914551,
+        "y": 4.624133586883545
+      },
+      {
+        "attitude": -0.5,
+        "name": "disturbing",
+        "type": "VERB",
+        "value": 1,
+        "x": 4.038463592529297,
+        "y": -6.299381732940674
+      },
+      {
+        "attitude": 0.0,
+        "name": "double",
+        "type": "ADJ",
+        "value": 2,
+        "x": 8.350558280944824,
+        "y": -7.228693008422852
+      },
+      {
+        "attitude": -0.15555555555555559,
+        "name": "down",
+        "type": "ADP",
+        "value": 1,
+        "x": 7.776951789855957,
+        "y": 1.4629690647125244
+      },
+      {
+        "attitude": 0.43333333333333335,
+        "name": "easy",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.4933295249938965,
+        "y": -6.272386074066162
+      },
+      {
+        "attitude": 0.0,
+        "name": "eat",
+        "type": "VERB",
+        "value": 1,
+        "x": -0.721295952796936,
+        "y": -2.8681678771972656
+      },
+      {
+        "attitude": 0.0,
+        "name": "echo",
+        "type": "VERB",
+        "value": 1,
+        "x": -0.19112184643745422,
+        "y": -0.7353081107139587
+      },
+      {
+        "attitude": 0.25,
+        "name": "educational",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.04840087890625,
+        "y": -4.978620529174805
+      },
+      {
+        "attitude": 0.5,
+        "name": "elegant",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.123605728149414,
+        "y": -4.839758396148682
+      },
+      {
+        "attitude": 0.0,
+        "name": "enclose",
+        "type": "NOUN",
+        "value": 1,
+        "x": -5.192178726196289,
+        "y": 0.8237819075584412
+      },
+      {
+        "attitude": 0.0,
+        "name": "enough",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.967986583709717,
+        "y": -6.4666032791137695
+      },
+      {
+        "attitude": 0.0,
+        "name": "entrance",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.5828752517700195,
+        "y": 3.6817266941070557
+      },
+      {
+        "attitude": 0.0,
+        "name": "entropy",
+        "type": "ADJ",
+        "value": 1,
+        "x": -3.2308974266052246,
+        "y": -2.9842734336853027
+      },
+      {
+        "attitude": 0.0,
+        "name": "evening",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.405724048614502,
+        "y": 6.200506687164307
+      },
+      {
+        "attitude": 0.0,
+        "name": "event",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.6401424407958984,
+        "y": 4.5040483474731445
+      },
+      {
+        "attitude": 0.0,
+        "name": "extrovert",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.866626024246216,
+        "y": -1.225793719291687
+      },
+      {
+        "attitude": 0.4166666666666667,
+        "name": "fine",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.820944786071777,
+        "y": -4.954761028289795
+      },
+      {
+        "attitude": 0.0,
+        "name": "flag",
+        "type": "NOUN",
+        "value": 1,
+        "x": -5.4361186027526855,
+        "y": 3.6735711097717285
+      },
+      {
+        "attitude": 0.0,
+        "name": "floor",
+        "type": "NOUN",
+        "value": 4,
+        "x": -3.547757387161255,
+        "y": 5.009209156036377
+      },
+      {
+        "attitude": 0.0,
+        "name": "food",
+        "type": "NOUN",
+        "value": 2,
+        "x": -5.138496398925781,
+        "y": 5.076670169830322
+      },
+      {
+        "attitude": 0.0,
+        "name": "force",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.8731226921081543,
+        "y": 1.5930874347686768
+      },
+      {
+        "attitude": 0.0,
+        "name": "friend",
+        "type": "NOUN",
+        "value": 2,
+        "x": -2.95243763923645,
+        "y": 2.732724189758301
+      },
+      {
+        "attitude": 0.0,
+        "name": "function",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.5735208988189697,
+        "y": 1.8686970472335815
+      },
+      {
+        "attitude": 0.0,
+        "name": "gallery",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.072577953338623,
+        "y": 2.1077992916107178
+      },
+      {
+        "attitude": 0.0,
+        "name": "german",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.078280925750732,
+        "y": -4.916139602661133
+      },
+      {
+        "attitude": 0.7,
+        "name": "good",
+        "type": "ADJ",
+        "value": 4,
+        "x": 8.010704040527344,
+        "y": -4.864539623260498
+      },
+      {
+        "attitude": 0.8,
+        "name": "great",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.688569068908691,
+        "y": -6.74742317199707
+      },
+      {
+        "attitude": 0.0,
+        "name": "ground",
+        "type": "NOUN",
+        "value": 2,
+        "x": -6.127566814422607,
+        "y": 4.540451526641846
+      },
+      {
+        "attitude": 0.0,
+        "name": "hall",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.2770025730133057,
+        "y": 4.333487510681152
+      },
+      {
+        "attitude": 0.0,
+        "name": "hang out",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.0682477951049805,
+        "y": 2.1017723083496094
+      },
+      {
+        "attitude": 0.0,
+        "name": "hear",
+        "type": "VERB",
+        "value": 1,
+        "x": -2.471761703491211,
+        "y": -1.8518524169921875
+      },
+      {
+        "attitude": 0.0,
+        "name": "heat",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.584253311157227,
+        "y": 3.1547188758850098
+      },
+      {
+        "attitude": 0.0,
+        "name": "height",
+        "type": "NOUN",
+        "value": 2,
+        "x": -0.8168875575065613,
+        "y": 6.34067964553833
+      },
+      {
+        "attitude": 0.0,
+        "name": "hodge",
+        "type": "ADJ",
+        "value": 1,
+        "x": 3.1063883304595947,
+        "y": -3.0466315746307373
+      },
+      {
+        "attitude": 0.0,
+        "name": "homework",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.335346698760986,
+        "y": 4.451369762420654
+      },
+      {
+        "attitude": 0.4000000000000001,
+        "name": "huge",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.220526695251465,
+        "y": -5.693739414215088
+      },
+      {
+        "attitude": 0.9,
+        "name": "ideal",
+        "type": "ADJ",
+        "value": 2,
+        "x": 6.623522758483887,
+        "y": -4.277186870574951
+      },
+      {
+        "attitude": 0.0,
+        "name": "individual",
+        "type": "ADJ",
+        "value": 2,
+        "x": 7.596644878387451,
+        "y": -3.7401933670043945
+      },
+      {
+        "attitude": 0.0,
+        "name": "interact",
+        "type": "ADJ",
+        "value": 1,
+        "x": 2.01493239402771,
+        "y": -2.373910903930664
+      },
+      {
+        "attitude": 0.0,
+        "name": "introvert",
+        "type": "ADJ",
+        "value": 1,
+        "x": 1.5994017124176025,
+        "y": -2.1107964515686035
+      },
+      {
+        "attitude": 0.0,
+        "name": "invite",
+        "type": "VERB",
+        "value": 1,
+        "x": -3.287126302719116,
+        "y": -2.8838744163513184
+      },
+      {
+        "attitude": 0.0,
+        "name": "lack",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.238037586212158,
+        "y": 1.5114102363586426
+      },
+      {
+        "attitude": 0.0,
+        "name": "lead",
+        "type": "ADJ",
+        "value": 1,
+        "x": 0.46581071615219116,
+        "y": -0.9208839535713196
+      },
+      {
+        "attitude": 0.4,
+        "name": "light",
+        "type": "ADJ",
+        "value": 2,
+        "x": 6.027804374694824,
+        "y": -3.899953603744507
+      },
+      {
+        "attitude": -0.05,
+        "name": "long",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.885256290435791,
+        "y": -6.9474287033081055
+      },
+      {
+        "attitude": 0.0,
+        "name": "look",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.4209192991256714,
+        "y": -1.5533933639526367
+      },
+      {
+        "attitude": 0.1,
+        "name": "loud",
+        "type": "ADJ",
+        "value": 2,
+        "x": 6.555641174316406,
+        "y": -6.202936172485352
+      },
+      {
+        "attitude": 0.0,
+        "name": "lounge",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.9632607698440552,
+        "y": 2.4786932468414307
+      },
+      {
+        "attitude": 0.0,
+        "name": "meet",
+        "type": "VERB",
+        "value": 2,
+        "x": -2.4358713626861572,
+        "y": -1.294167399406433
+      },
+      {
+        "attitude": 0.0,
+        "name": "meeting",
+        "type": "NOUN",
+        "value": 2,
+        "x": -4.743706703186035,
+        "y": 7.151555061340332
+      },
+      {
+        "attitude": 0.0,
+        "name": "middle",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.682149887084961,
+        "y": -3.633261203765869
+      },
+      {
+        "attitude": 0.0,
+        "name": "mix here",
+        "type": "VERB",
+        "value": 1,
+        "x": 5.170560359954834,
+        "y": 1.6748765707015991
+      },
+      {
+        "attitude": 0.0,
+        "name": "moderate",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.902994155883789,
+        "y": -6.894906044006348
+      },
+      {
+        "attitude": 0.0,
+        "name": "morally",
+        "type": "ADV",
+        "value": 1,
+        "x": 9.6536226272583,
+        "y": -0.613222599029541
+      },
+      {
+        "attitude": 0.0,
+        "name": "move",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.515991449356079,
+        "y": -0.2526962459087372
+      },
+      {
+        "attitude": 0.1,
+        "name": "natural",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.567767143249512,
+        "y": -5.413663864135742
+      },
+      {
+        "attitude": 0.0,
+        "name": "navigate around",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.264680862426758,
+        "y": 1.1036254167556763
+      },
+      {
+        "attitude": 0.6,
+        "name": "nice",
+        "type": "ADJ",
+        "value": 2,
+        "x": 10.154062271118164,
+        "y": -6.261457443237305
+      },
+      {
+        "attitude": 0.0,
+        "name": "noisy",
+        "type": "ADJ",
+        "value": 2,
+        "x": 7.389754772186279,
+        "y": -2.6182143688201904
+      },
+      {
+        "attitude": 0.0,
+        "name": "occupy",
+        "type": "ADJ",
+        "value": 1,
+        "x": 0.7887502908706665,
+        "y": 0.6521539688110352
+      },
+      {
+        "attitude": 0.0,
+        "name": "open",
+        "type": "ADJ",
+        "value": 2,
+        "x": 9.356118202209473,
+        "y": -6.624118328094482
+      },
+      {
+        "attitude": 0.0,
+        "name": "opportunity",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.7869489192962646,
+        "y": 2.424820899963379
+      },
+      {
+        "attitude": 0.0,
+        "name": "opposite",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.054306983947754,
+        "y": -2.3663992881774902
+      },
+      {
+        "attitude": 0.0,
+        "name": "out",
+        "type": "PART",
+        "value": 2,
+        "x": 7.865970611572266,
+        "y": 1.6792629957199097
+      },
+      {
+        "attitude": 0.0,
+        "name": "people",
+        "type": "NOUN",
+        "value": 5,
+        "x": 4.527932167053223,
+        "y": -1.1051398515701294
+      },
+      {
+        "attitude": 0.0,
+        "name": "place",
+        "type": "NOUN",
+        "value": 3,
+        "x": -3.836453914642334,
+        "y": 4.039071083068848
+      },
+      {
+        "attitude": 0.0,
+        "name": "podge",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.760514497756958,
+        "y": 2.2338123321533203
+      },
+      {
+        "attitude": 0.0,
+        "name": "position",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.7658226490020752,
+        "y": 3.5540924072265625
+      },
+      {
+        "attitude": 0.25,
+        "name": "pretty",
+        "type": "ADJ",
+        "value": 2,
+        "x": 7.733505725860596,
+        "y": -7.923340320587158
+      },
+      {
+        "attitude": 0.0,
+        "name": "printer",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.32817006111145,
+        "y": 5.359020233154297
+      },
+      {
+        "attitude": 0.0,
+        "name": "productive",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.72603988647461,
+        "y": -4.591872692108154
+      },
+      {
+        "attitude": 0.0,
+        "name": "public",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.007227420806885,
+        "y": -4.113917350769043
+      },
+      {
+        "attitude": 0.0,
+        "name": "relax",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.71290922164917,
+        "y": -2.266468048095703
+      },
+      {
+        "attitude": 0.0,
+        "name": "relaxing",
+        "type": "VERB",
+        "value": 1,
+        "x": 4.056591510772705,
+        "y": -6.299775123596191
+      },
+      {
+        "attitude": 0.0,
+        "name": "restaurant",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.1919209957122803,
+        "y": 5.415194988250732
+      },
+      {
+        "attitude": 0.0,
+        "name": "room",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.192728042602539,
+        "y": 3.1586086750030518
+      },
+      {
+        "attitude": 0.5,
+        "name": "safe",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.592348098754883,
+        "y": -5.655052661895752
+      },
+      {
+        "attitude": 0.0,
+        "name": "second",
+        "type": "ADJ",
+        "value": 4,
+        "x": 7.219854354858398,
+        "y": -7.018500328063965
+      },
+      {
+        "attitude": 0.0,
+        "name": "shop",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.969439744949341,
+        "y": 3.262868642807007
+      },
+      {
+        "attitude": 0.0,
+        "name": "shuffle around",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.078759670257568,
+        "y": 1.293460488319397
+      },
+      {
+        "attitude": 0.0,
+        "name": "sit",
+        "type": "VERB",
+        "value": 3,
+        "x": -0.7789084315299988,
+        "y": -1.8912744522094727
+      },
+      {
+        "attitude": 0.0,
+        "name": "sit there",
+        "type": "VERB",
+        "value": 1,
+        "x": 5.056513786315918,
+        "y": 1.7219629287719727
+      },
+      {
+        "attitude": 0.0,
+        "name": "skylight",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.14770221710205,
+        "y": -8.133369445800781
+      },
+      {
+        "attitude": 0.0,
+        "name": "sleep",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.8947296142578125,
+        "y": 2.547921657562256
+      },
+      {
+        "attitude": 0.0,
+        "name": "smell",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.8626887798309326,
+        "y": 2.3978817462921143
+      },
+      {
+        "attitude": 0.0,
+        "name": "socialize",
+        "type": "VERB",
+        "value": 1,
+        "x": -2.367189407348633,
+        "y": -0.7290692329406738
+      },
+      {
+        "attitude": 0.0,
+        "name": "spacious",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.113064765930176,
+        "y": -5.5221171379089355
+      },
+      {
+        "attitude": 0.0,
+        "name": "speak",
+        "type": "VERB",
+        "value": 1,
+        "x": -2.140714645385742,
+        "y": -0.6146751046180725
+      },
+      {
+        "attitude": 0.0,
+        "name": "staircase",
+        "type": "NOUN",
+        "value": 2,
+        "x": -0.7438704967498779,
+        "y": 3.2052087783813477
+      },
+      {
+        "attitude": 0.0,
+        "name": "stick",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.587437629699707,
+        "y": -0.01411986630409956
+      },
+      {
+        "attitude": 0.0,
+        "name": "store",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.2988665103912354,
+        "y": 3.127509832382202
+      },
+      {
+        "attitude": 0.0,
+        "name": "study",
+        "type": "NOUN",
+        "value": 4,
+        "x": -1.9279870986938477,
+        "y": 1.5663349628448486
+      },
+      {
+        "attitude": 0.0,
+        "name": "surround",
+        "type": "VERB",
+        "value": 1,
+        "x": 0.349726140499115,
+        "y": -2.009518623352051
+      },
+      {
+        "attitude": 0.0,
+        "name": "table",
+        "type": "NOUN",
+        "value": 2,
+        "x": -2.976567506790161,
+        "y": 6.795759201049805
+      },
+      {
+        "attitude": 0.0,
+        "name": "talk",
+        "type": "NOUN",
+        "value": 2,
+        "x": -2.269855260848999,
+        "y": 0.5948842763900757
+      },
+      {
+        "attitude": 0.0,
+        "name": "tall",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.201464653015137,
+        "y": -4.24613094329834
+      },
+      {
+        "attitude": 0.0,
+        "name": "tend",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.5145790576934814,
+        "y": -2.9961464405059814
+      },
+      {
+        "attitude": 0.0,
+        "name": "though",
+        "type": "ADP",
+        "value": 1,
+        "x": 7.427445411682129,
+        "y": 0.5294775366783142
+      },
+      {
+        "attitude": 0.0,
+        "name": "time",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.7633764743804932,
+        "y": 6.39219856262207
+      },
+      {
+        "attitude": -0.7,
+        "name": "ugly",
+        "type": "ADJ",
+        "value": 2,
+        "x": 11.94188404083252,
+        "y": -6.1131463050842285
+      },
+      {
+        "attitude": -0.5,
+        "name": "uncomfortable",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.629216194152832,
+        "y": -5.799007892608643
+      },
+      {
+        "attitude": 0.0,
+        "name": "up",
+        "type": "PART",
+        "value": 4,
+        "x": 7.864944934844971,
+        "y": 1.6798607110977173
+      },
+      {
+        "attitude": 0.0,
+        "name": "upstairs",
+        "type": "ADV",
+        "value": 1,
+        "x": 5.492202281951904,
+        "y": -1.276292324066162
+      },
+      {
+        "attitude": 0.3,
+        "name": "useful",
+        "type": "ADJ",
+        "value": 1,
+        "x": 11.193467140197754,
+        "y": -5.7829790115356445
+      },
+      {
+        "attitude": 0.0,
+        "name": "vibe",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.03110899217426777,
+        "y": 1.4033725261688232
+      },
+      {
+        "attitude": 0.0,
+        "name": "wait",
+        "type": "VERB",
+        "value": 2,
+        "x": -1.574185848236084,
+        "y": -2.073470115661621
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk",
+        "type": "VERB",
+        "value": 1,
+        "x": -0.8290090560913086,
+        "y": -0.6793665885925293
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk around",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.032134056091309,
+        "y": 1.3653918504714966
+      },
+      {
+        "attitude": 0.0,
+        "name": "well",
+        "type": "INTJ",
+        "value": 2,
+        "x": 6.139551639556885,
+        "y": -7.171815395355225
+      }
+    ],
+    "name": 0,
+    "value": 500
+  },
+  {
+    "children": [
+      {
+        "attitude": 0.0,
+        "name": "2nd",
+        "type": "ADJ",
+        "value": 2,
+        "x": 4.1732563972473145,
+        "y": -5.94778299331665
+      },
+      {
+        "attitude": 0.0,
+        "name": "access",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.489707350730896,
+        "y": 4.049359321594238
+      },
+      {
+        "attitude": 0.0,
+        "name": "animated",
+        "type": "VERB",
+        "value": 1,
+        "x": 11.98570728302002,
+        "y": -8.249086380004883
+      },
+      {
+        "attitude": 0.0,
+        "name": "area",
+        "type": "NOUN",
+        "value": 2,
+        "x": -2.600344181060791,
+        "y": 6.636936187744141
+      },
+      {
+        "attitude": 0.0,
+        "name": "atrium",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.1110424995422363,
+        "y": 6.395723342895508
+      },
+      {
+        "attitude": 0.0,
+        "name": "balcony",
+        "type": "ADJ",
+        "value": 1,
+        "x": 0.3447289764881134,
+        "y": -1.0219746828079224
+      },
+      {
+        "attitude": 0.0,
+        "name": "banister",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.3947763442993164,
+        "y": 5.159741401672363
+      },
+      {
+        "attitude": -0.8,
+        "name": "base",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.19830216467380524,
+        "y": 1.3774362802505493
+      },
+      {
+        "attitude": 0.0,
+        "name": "big",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.734902858734131,
+        "y": -7.391515731811523
+      },
+      {
+        "attitude": 0.0,
+        "name": "both",
+        "type": "DET",
+        "value": 1,
+        "x": 2.6055874824523926,
+        "y": -8.947221755981445
+      },
+      {
+        "attitude": 0.0,
+        "name": "bottom",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.079139232635498,
+        "y": -3.761594772338867
+      },
+      {
+        "attitude": 0.0,
+        "name": "boxy",
+        "type": "ADJ",
+        "value": 1,
+        "x": 11.250475883483887,
+        "y": -7.615114688873291
+      },
+      {
+        "attitude": 0.0,
+        "name": "brick",
+        "type": "NOUN",
+        "value": 2,
+        "x": -1.2555994987487793,
+        "y": 4.8711371421813965
+      },
+      {
+        "attitude": 0.7000000000000001,
+        "name": "bright",
+        "type": "ADJ",
+        "value": 2,
+        "x": 9.796968460083008,
+        "y": -8.443270683288574
+      },
+      {
+        "attitude": 0.0,
+        "name": "building",
+        "type": "NOUN",
+        "value": 2,
+        "x": 0.9930114150047302,
+        "y": 9.966153144836426
+      },
+      {
+        "attitude": 0.0,
+        "name": "carpet",
+        "type": "NOUN",
+        "value": 4,
+        "x": 3.236269950866699,
+        "y": 4.834641933441162
+      },
+      {
+        "attitude": 0.0,
+        "name": "ceiling",
+        "type": "NOUN",
+        "value": 5,
+        "x": 0.6429125666618347,
+        "y": 9.653711318969727
+      },
+      {
+        "attitude": -0.1,
+        "name": "center",
+        "type": "NOUN",
+        "value": 4,
+        "x": 0.3491928279399872,
+        "y": 2.315052032470703
+      },
+      {
+        "attitude": 0.0,
+        "name": "central",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.961143493652344,
+        "y": -4.522934913635254
+      },
+      {
+        "attitude": 0.0,
+        "name": "chair",
+        "type": "NOUN",
+        "value": 7,
+        "x": -0.8371694087982178,
+        "y": 7.921205520629883
+      },
+      {
+        "attitude": 0.0,
+        "name": "change",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.006669998168945,
+        "y": 2.1140010356903076
+      },
+      {
+        "attitude": 0.0,
+        "name": "chaotic",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.235360145568848,
+        "y": -5.8025360107421875
+      },
+      {
+        "attitude": 0.0,
+        "name": "circular",
+        "type": "ADJ",
+        "value": 4,
+        "x": 8.443525314331055,
+        "y": -5.263220310211182
+      },
+      {
+        "attitude": 0.0,
+        "name": "circulation",
+        "type": "NOUN",
+        "value": 2,
+        "x": -1.0000654458999634,
+        "y": 7.3075056076049805
+      },
+      {
+        "attitude": 0.0,
+        "name": "communal",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.973775863647461,
+        "y": -5.8110857009887695
+      },
+      {
+        "attitude": 0.0,
+        "name": "contradictory",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.820188522338867,
+        "y": -5.580447196960449
+      },
+      {
+        "attitude": 0.0,
+        "name": "converge",
+        "type": "VERB",
+        "value": 1,
+        "x": -4.19233512878418,
+        "y": 0.6147624850273132
+      },
+      {
+        "attitude": 0.0,
+        "name": "couch",
+        "type": "NOUN",
+        "value": 2,
+        "x": 1.2669440507888794,
+        "y": 3.206617593765259
+      },
+      {
+        "attitude": 0.0,
+        "name": "curve",
+        "type": "NOUN",
+        "value": 3,
+        "x": -0.5462973117828369,
+        "y": 4.668534278869629
+      },
+      {
+        "attitude": 0.0,
+        "name": "cylindrical",
+        "type": "ADJ",
+        "value": 2,
+        "x": 3.525277853012085,
+        "y": -3.5753977298736572
+      },
+      {
+        "attitude": 0.0,
+        "name": "dance",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.487804889678955,
+        "y": 6.029174327850342
+      },
+      {
+        "attitude": -0.6,
+        "name": "dangerous",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.482197761535645,
+        "y": -7.245756149291992
+      },
+      {
+        "attitude": -0.15,
+        "name": "dark",
+        "type": "ADJ",
+        "value": 2,
+        "x": 5.826867580413818,
+        "y": -5.571169376373291
+      },
+      {
+        "attitude": 0.0,
+        "name": "define",
+        "type": "VERB",
+        "value": 1,
+        "x": -3.623502254486084,
+        "y": -0.023988815024495125
+      },
+      {
+        "attitude": 0.0,
+        "name": "dense",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.8929243087768555,
+        "y": -4.113971710205078
+      },
+      {
+        "attitude": 0.0,
+        "name": "desk",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.944321393966675,
+        "y": 9.110441207885742
+      },
+      {
+        "attitude": 0.0,
+        "name": "different",
+        "type": "ADJ",
+        "value": 2,
+        "x": 8.059123992919922,
+        "y": -7.503671646118164
+      },
+      {
+        "attitude": 0.1,
+        "name": "dim",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.492373466491699,
+        "y": -6.137731075286865
+      },
+      {
+        "attitude": 0.0,
+        "name": "diminish",
+        "type": "ADJ",
+        "value": 1,
+        "x": 2.2932240962982178,
+        "y": -3.4115257263183594
+      },
+      {
+        "attitude": 0.0,
+        "name": "direction",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.7331511974334717,
+        "y": 6.298806190490723
+      },
+      {
+        "attitude": 0.3,
+        "name": "distinct",
+        "type": "ADJ",
+        "value": 2,
+        "x": 10.647909164428711,
+        "y": -6.614118576049805
+      },
+      {
+        "attitude": 0.0,
+        "name": "door",
+        "type": "NOUN",
+        "value": 4,
+        "x": 0.6100512146949768,
+        "y": 7.757988929748535
+      },
+      {
+        "attitude": 0.0,
+        "name": "double",
+        "type": "ADJ",
+        "value": 2,
+        "x": 6.987961769104004,
+        "y": -8.119869232177734
+      },
+      {
+        "attitude": -0.15555555555555559,
+        "name": "down",
+        "type": "ADP",
+        "value": 1,
+        "x": -0.11647558957338333,
+        "y": -7.574233531951904
+      },
+      {
+        "attitude": 0.0,
+        "name": "dynamic",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.598202228546143,
+        "y": -5.313253879547119
+      },
+      {
+        "attitude": 0.43333333333333335,
+        "name": "easy",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.47050666809082,
+        "y": -9.056151390075684
+      },
+      {
+        "attitude": 0.6,
+        "name": "effective",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.308680534362793,
+        "y": -6.0420451164245605
+      },
+      {
+        "attitude": 0.5,
+        "name": "energetic",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.654571533203125,
+        "y": -5.252907752990723
+      },
+      {
+        "attitude": 0.0,
+        "name": "enter",
+        "type": "VERB",
+        "value": 2,
+        "x": -4.894952774047852,
+        "y": -1.1988725662231445
+      },
+      {
+        "attitude": 0.0,
+        "name": "entrance",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.087423801422119,
+        "y": 5.018890857696533
+      },
+      {
+        "attitude": 0.0,
+        "name": "environment",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.4480583071708679,
+        "y": 5.805220127105713
+      },
+      {
+        "attitude": 0.0,
+        "name": "exhibit",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.622178077697754,
+        "y": 3.4750773906707764
+      },
+      {
+        "attitude": -0.125,
+        "name": "extremely",
+        "type": "ADV",
+        "value": 1,
+        "x": 3.648613929748535,
+        "y": -10.627227783203125
+      },
+      {
+        "attitude": 0.0,
+        "name": "facilitate",
+        "type": "ADJ",
+        "value": 1,
+        "x": -0.41408663988113403,
+        "y": -1.4581081867218018
+      },
+      {
+        "attitude": 0.5,
+        "name": "famous",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.093326568603516,
+        "y": -7.129892826080322
+      },
+      {
+        "attitude": 0.7,
+        "name": "fascinating",
+        "type": "ADJ",
+        "value": 1,
+        "x": 9.963005065917969,
+        "y": -3.2224135398864746
+      },
+      {
+        "attitude": 0.0,
+        "name": "fill",
+        "type": "VERB",
+        "value": 1,
+        "x": -5.869717121124268,
+        "y": 0.5773005485534668
+      },
+      {
+        "attitude": 0.0,
+        "name": "find",
+        "type": "VERB",
+        "value": 1,
+        "x": -3.5919177532196045,
+        "y": -1.3962322473526
+      },
+      {
+        "attitude": 0.0,
+        "name": "flag",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.4506826400756836,
+        "y": 5.542133808135986
+      },
+      {
+        "attitude": 0.0,
+        "name": "flank",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.274322748184204,
+        "y": 2.294283628463745
+      },
+      {
+        "attitude": 0.0,
+        "name": "float",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.915701150894165,
+        "y": 1.3385660648345947
+      },
+      {
+        "attitude": 0.0,
+        "name": "floor",
+        "type": "NOUN",
+        "value": 6,
+        "x": -0.2512943744659424,
+        "y": 6.850362777709961
+      },
+      {
+        "attitude": 0.0,
+        "name": "focal",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.657185554504395,
+        "y": -4.410522937774658
+      },
+      {
+        "attitude": 0.0,
+        "name": "frame",
+        "type": "NOUN",
+        "value": 2,
+        "x": -3.9088566303253174,
+        "y": 7.603943824768066
+      },
+      {
+        "attitude": 0.5,
+        "name": "grand",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.567465305328369,
+        "y": -4.760471343994141
+      },
+      {
+        "attitude": 0.0,
+        "name": "gray",
+        "type": "ADJ",
+        "value": 2,
+        "x": 6.880323886871338,
+        "y": -5.848330497741699
+      },
+      {
+        "attitude": 0.0,
+        "name": "grayish",
+        "type": "ADJ",
+        "value": 1,
+        "x": 3.5603816509246826,
+        "y": -3.7086007595062256
+      },
+      {
+        "attitude": 0.0,
+        "name": "group",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.431509494781494,
+        "y": 8.027288436889648
+      },
+      {
+        "attitude": 0.0,
+        "name": "hang out",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.830878496170044,
+        "y": -6.372011661529541
+      },
+      {
+        "attitude": -0.2916666666666667,
+        "name": "hard",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.963485240936279,
+        "y": -9.498800277709961
+      },
+      {
+        "attitude": 0.0,
+        "name": "hear",
+        "type": "VERB",
+        "value": 1,
+        "x": -6.4354352951049805,
+        "y": -0.4187738001346588
+      },
+      {
+        "attitude": 0.0,
+        "name": "height",
+        "type": "NOUN",
+        "value": 2,
+        "x": 1.7646162509918213,
+        "y": 4.771294116973877
+      },
+      {
+        "attitude": 0.16,
+        "name": "high",
+        "type": "ADJ",
+        "value": 3,
+        "x": 7.1279401779174805,
+        "y": -8.896463394165039
+      },
+      {
+        "attitude": 0.0,
+        "name": "info",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.7085909843444824,
+        "y": 6.477389812469482
+      },
+      {
+        "attitude": 0.5,
+        "name": "interesting",
+        "type": "ADJ",
+        "value": 1,
+        "x": 10.038835525512695,
+        "y": -4.623244762420654
+      },
+      {
+        "attitude": 0.0,
+        "name": "juncture",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.9780521392822266,
+        "y": 3.3845906257629395
+      },
+      {
+        "attitude": 0.21428571428571427,
+        "name": "large",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.466174125671387,
+        "y": -7.9463067054748535
+      },
+      {
+        "attitude": 0.0,
+        "name": "lead",
+        "type": "ADJ",
+        "value": 1,
+        "x": -2.8778557777404785,
+        "y": -0.6246199011802673
+      },
+      {
+        "attitude": 0.4,
+        "name": "light",
+        "type": "ADJ",
+        "value": 1,
+        "x": 4.62611722946167,
+        "y": -4.204959392547607
+      },
+      {
+        "attitude": -0.1875,
+        "name": "little",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.926641464233398,
+        "y": -8.523630142211914
+      },
+      {
+        "attitude": 0.13636363636363635,
+        "name": "lively",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.109518051147461,
+        "y": -9.523927688598633
+      },
+      {
+        "attitude": 0.0,
+        "name": "look",
+        "type": "VERB",
+        "value": 1,
+        "x": -4.365178108215332,
+        "y": -0.5892753601074219
+      },
+      {
+        "attitude": 0.1,
+        "name": "loud",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.961376667022705,
+        "y": -9.499488830566406
+      },
+      {
+        "attitude": 0.0,
+        "name": "low",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.998845100402832,
+        "y": -7.083619117736816
+      },
+      {
+        "attitude": 0.0,
+        "name": "make",
+        "type": "VERB",
+        "value": 1,
+        "x": -5.52646017074585,
+        "y": -0.8112369775772095
+      },
+      {
+        "attitude": 0.0,
+        "name": "marble",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.4977257251739502,
+        "y": 5.443161487579346
+      },
+      {
+        "attitude": 0.0,
+        "name": "meet",
+        "type": "VERB",
+        "value": 1,
+        "x": -5.973605632781982,
+        "y": 0.12333755940198898
+      },
+      {
+        "attitude": 0.0,
+        "name": "metal",
+        "type": "NOUN",
+        "value": 1,
+        "x": 1.1398348808288574,
+        "y": 5.478042125701904
+      },
+      {
+        "attitude": 0.0,
+        "name": "move",
+        "type": "VERB",
+        "value": 1,
+        "x": -4.3576178550720215,
+        "y": 0.2526261508464813
+      },
+      {
+        "attitude": 0.0,
+        "name": "multiple",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.7797956466674805,
+        "y": -4.77023983001709
+      },
+      {
+        "attitude": 0.0,
+        "name": "node",
+        "type": "ADJ",
+        "value": 1,
+        "x": 11.494871139526367,
+        "y": -5.126626491546631
+      },
+      {
+        "attitude": 0.0,
+        "name": "occupy",
+        "type": "ADJ",
+        "value": 1,
+        "x": -2.0425729751586914,
+        "y": -1.9597983360290527
+      },
+      {
+        "attitude": 0.0,
+        "name": "open",
+        "type": "ADJ",
+        "value": 2,
+        "x": 5.842260360717773,
+        "y": -6.709412574768066
+      },
+      {
+        "attitude": 0.0,
+        "name": "opposite",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.549845218658447,
+        "y": -2.35237193107605
+      },
+      {
+        "attitude": 0.0,
+        "name": "out",
+        "type": "PART",
+        "value": 2,
+        "x": -0.11936001479625702,
+        "y": -7.742035865783691
+      },
+      {
+        "attitude": 0.0,
+        "name": "part",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.5509576797485352,
+        "y": 3.376788854598999
+      },
+      {
+        "attitude": 0.0,
+        "name": "pass by",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.796299695968628,
+        "y": -5.741701602935791
+      },
+      {
+        "attitude": 0.0,
+        "name": "people",
+        "type": "NOUN",
+        "value": 3,
+        "x": 4.0152974128723145,
+        "y": 0.5582507252693176
+      },
+      {
+        "attitude": 0.0,
+        "name": "perspective",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.22139045596122742,
+        "y": 3.9945850372314453
+      },
+      {
+        "attitude": 0.0,
+        "name": "place",
+        "type": "NOUN",
+        "value": 2,
+        "x": -4.310655117034912,
+        "y": 6.508874416351318
+      },
+      {
+        "attitude": 0.0,
+        "name": "placement",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.09137501567602158,
+        "y": 5.624730110168457
+      },
+      {
+        "attitude": 0.0,
+        "name": "pod",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.9773894548416138,
+        "y": 6.431469440460205
+      },
+      {
+        "attitude": 0.0,
+        "name": "point",
+        "type": "NOUN",
+        "value": 2,
+        "x": -1.784448504447937,
+        "y": 3.9911983013153076
+      },
+      {
+        "attitude": 0.0,
+        "name": "poster",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.6858460903167725,
+        "y": 7.440555095672607
+      },
+      {
+        "attitude": 0.25,
+        "name": "pretty",
+        "type": "ADJ",
+        "value": 2,
+        "x": 5.610019683837891,
+        "y": -9.711405754089355
+      },
+      {
+        "attitude": 0.0,
+        "name": "privacy",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.8721097707748413,
+        "y": 7.904282569885254
+      },
+      {
+        "attitude": 0.0,
+        "name": "public",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.982203960418701,
+        "y": -4.9490437507629395
+      },
+      {
+        "attitude": 0.0,
+        "name": "purposely",
+        "type": "ADV",
+        "value": 1,
+        "x": 3.7966816425323486,
+        "y": -10.709816932678223
+      },
+      {
+        "attitude": 0.0,
+        "name": "recital",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.684566020965576,
+        "y": -3.354905605316162
+      },
+      {
+        "attitude": 0.0,
+        "name": "remind",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.56801438331604,
+        "y": 0.006890176795423031
+      },
+      {
+        "attitude": 0.0,
+        "name": "restaurant",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.3300665318965912,
+        "y": 7.0411295890808105
+      },
+      {
+        "attitude": 0.0,
+        "name": "revolving",
+        "type": "VERB",
+        "value": 2,
+        "x": 10.074828147888184,
+        "y": -2.7591936588287354
+      },
+      {
+        "attitude": 0.0,
+        "name": "revolving door",
+        "type": "VERB",
+        "value": 1,
+        "x": 1.3413499593734741,
+        "y": 8.345145225524902
+      },
+      {
+        "attitude": 0.0,
+        "name": "room",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.4483726024627686,
+        "y": 3.932363271713257
+      },
+      {
+        "attitude": -0.2,
+        "name": "round",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.304939270019531,
+        "y": -2.70481276512146
+      },
+      {
+        "attitude": 0.0,
+        "name": "seat",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.887108325958252,
+        "y": 6.859959125518799
+      },
+      {
+        "attitude": 0.0,
+        "name": "seating",
+        "type": "VERB",
+        "value": 3,
+        "x": 1.2123385667800903,
+        "y": 10.101835250854492
+      },
+      {
+        "attitude": 0.0,
+        "name": "second",
+        "type": "ADJ",
+        "value": 1,
+        "x": 6.1301116943359375,
+        "y": -8.807971000671387
+      },
+      {
+        "attitude": 0.0,
+        "name": "side",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.6913810968399048,
+        "y": 1.1134132146835327
+      },
+      {
+        "attitude": 0.0,
+        "name": "signature",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.085602045059204,
+        "y": 5.392765998840332
+      },
+      {
+        "attitude": 0.0,
+        "name": "sit",
+        "type": "VERB",
+        "value": 2,
+        "x": -5.066427230834961,
+        "y": -1.8167994022369385
+      },
+      {
+        "attitude": 0.0,
+        "name": "skylight",
+        "type": "ADJ",
+        "value": 2,
+        "x": 10.83603286743164,
+        "y": -8.81809139251709
+      },
+      {
+        "attitude": -0.25,
+        "name": "small",
+        "type": "ADJ",
+        "value": 2,
+        "x": 9.861091613769531,
+        "y": -6.920644283294678
+      },
+      {
+        "attitude": 0.0,
+        "name": "sofa",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.3832229375839233,
+        "y": 9.478610038757324
+      },
+      {
+        "attitude": 0.0,
+        "name": "solo",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.0039942264556885,
+        "y": -0.7573404312133789
+      },
+      {
+        "attitude": 0.0,
+        "name": "spatially",
+        "type": "ADV",
+        "value": 1,
+        "x": 3.204369068145752,
+        "y": -10.484580039978027
+      },
+      {
+        "attitude": 0.0,
+        "name": "square",
+        "type": "ADJ",
+        "value": 3,
+        "x": 7.861714839935303,
+        "y": -3.9267969131469727
+      },
+      {
+        "attitude": 0.0,
+        "name": "stage",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.5454280376434326,
+        "y": 3.9625985622406006
+      },
+      {
+        "attitude": 0.0,
+        "name": "stair",
+        "type": "NOUN",
+        "value": 3,
+        "x": 2.350904941558838,
+        "y": 5.91550874710083
+      },
+      {
+        "attitude": 0.0,
+        "name": "staircase",
+        "type": "NOUN",
+        "value": 8,
+        "x": -1.1898996829986572,
+        "y": 2.4370462894439697
+      },
+      {
+        "attitude": 0.0,
+        "name": "story",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.721737265586853,
+        "y": 7.384959697723389
+      },
+      {
+        "attitude": 0.0,
+        "name": "study",
+        "type": "NOUN",
+        "value": 1,
+        "x": -3.242394208908081,
+        "y": 2.3491969108581543
+      },
+      {
+        "attitude": 0.0,
+        "name": "surround",
+        "type": "VERB",
+        "value": 2,
+        "x": -1.5781711339950562,
+        "y": -0.35716512799263
+      },
+      {
+        "attitude": 0.0,
+        "name": "symmetrical",
+        "type": "ADJ",
+        "value": 1,
+        "x": 8.49746322631836,
+        "y": -6.5184407234191895
+      },
+      {
+        "attitude": 0.0,
+        "name": "table",
+        "type": "NOUN",
+        "value": 1,
+        "x": 1.872866153717041,
+        "y": 7.21657657623291
+      },
+      {
+        "attitude": 0.0,
+        "name": "tall",
+        "type": "ADJ",
+        "value": 2,
+        "x": 9.717111587524414,
+        "y": -7.8684821128845215
+      },
+      {
+        "attitude": 0.0,
+        "name": "tartan",
+        "type": "ADJ",
+        "value": 1,
+        "x": 3.254085063934326,
+        "y": -4.9655632972717285
+      },
+      {
+        "attitude": 0.0,
+        "name": "think",
+        "type": "VERB",
+        "value": 2,
+        "x": -4.3008856773376465,
+        "y": -1.3645737171173096
+      },
+      {
+        "attitude": 0.0,
+        "name": "through",
+        "type": "ADP",
+        "value": 1,
+        "x": -0.21354104578495026,
+        "y": -6.9353251457214355
+      },
+      {
+        "attitude": 0.0,
+        "name": "throughway",
+        "type": "INTJ",
+        "value": 1,
+        "x": 2.834691286087036,
+        "y": -0.65128093957901
+      },
+      {
+        "attitude": 0.5,
+        "name": "top",
+        "type": "ADJ",
+        "value": 1,
+        "x": 4.973485946655273,
+        "y": -4.5535407066345215
+      },
+      {
+        "attitude": 0.0,
+        "name": "traffic",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.9235259294509888,
+        "y": 8.421854972839355
+      },
+      {
+        "attitude": 0.0,
+        "name": "up",
+        "type": "PART",
+        "value": 4,
+        "x": -0.13925394415855408,
+        "y": -7.716853141784668
+      },
+      {
+        "attitude": 0.0,
+        "name": "upstairs",
+        "type": "ADV",
+        "value": 1,
+        "x": 4.114041805267334,
+        "y": -0.9922837615013123
+      },
+      {
+        "attitude": 0.0,
+        "name": "use",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.957542419433594,
+        "y": 1.6298856735229492
+      },
+      {
+        "attitude": -0.5,
+        "name": "useless",
+        "type": "ADJ",
+        "value": 1,
+        "x": 11.559996604919434,
+        "y": -6.218954563140869
+      },
+      {
+        "attitude": -0.25,
+        "name": "usually",
+        "type": "ADV",
+        "value": 1,
+        "x": 3.471313714981079,
+        "y": -10.652754783630371
+      },
+      {
+        "attitude": 0.0,
+        "name": "versatile",
+        "type": "ADJ",
+        "value": 1,
+        "x": 5.521145820617676,
+        "y": -7.963970184326172
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk",
+        "type": "VERB",
+        "value": 1,
+        "x": -3.4965012073516846,
+        "y": -0.16614267230033875
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk by",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.6124423742294312,
+        "y": -5.692811965942383
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk through",
+        "type": "VERB",
+        "value": 1,
+        "x": -1.4520140886306763,
+        "y": -5.758667469024658
+      },
+      {
+        "attitude": 0.0,
+        "name": "wall",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.1922569274902344,
+        "y": 4.99449348449707
+      },
+      {
+        "attitude": 0.0,
+        "name": "well",
+        "type": "INTJ",
+        "value": 1,
+        "x": 6.159252166748047,
+        "y": -10.638666152954102
+      },
+      {
+        "attitude": 0.0,
+        "name": "well lit",
+        "type": "ADV",
+        "value": 1,
+        "x": 3.5928030014038086,
+        "y": -7.408477783203125
+      },
+      {
+        "attitude": 0.0,
+        "name": "white",
+        "type": "ADJ",
+        "value": 1,
+        "x": 7.441363334655762,
+        "y": -6.382698059082031
+      },
+      {
+        "attitude": 0.0,
+        "name": "wing",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.10255441814661026,
+        "y": 8.137271881103516
+      },
+      {
+        "attitude": 0.0,
+        "name": "work",
+        "type": "NOUN",
+        "value": 1,
+        "x": -4.834925174713135,
+        "y": 4.939829349517822
+      },
+      {
+        "attitude": 0.0,
+        "name": "yellow",
+        "type": "ADJ",
+        "value": 2,
+        "x": 10.208847045898438,
+        "y": -9.903160095214844
+      }
+    ],
+    "name": 1,
+    "value": 500
+  },
+  {
+    "children": [
+      {
+        "attitude": 0.0,
+        "name": "2-story",
+        "type": "NOUN",
+        "value": 1,
+        "x": 10.562594413757324,
+        "y": -12.440221786499023
+      },
+      {
+        "attitude": 0.0,
+        "name": "2nd",
+        "type": "ADJ",
+        "value": 2,
+        "x": -6.132320404052734,
+        "y": 9.970841407775879
+      },
+      {
+        "attitude": 0.0,
+        "name": "academic",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.820819854736328,
+        "y": 9.02049732208252
+      },
+      {
+        "attitude": 0.0,
+        "name": "access",
+        "type": "NOUN",
+        "value": 2,
+        "x": 3.6299033164978027,
+        "y": -8.538474082946777
+      },
+      {
+        "attitude": 0.0,
+        "name": "acoustic",
+        "type": "ADJ",
+        "value": 1,
+        "x": -15.259856224060059,
+        "y": 9.078500747680664
+      },
+      {
+        "attitude": 0.0,
+        "name": "almost",
+        "type": "ADV",
+        "value": 1,
+        "x": -1.9927817583084106,
+        "y": 15.619548797607422
+      },
+      {
+        "attitude": 0.0,
+        "name": "aloof",
+        "type": "ADJ",
+        "value": 1,
+        "x": -8.096395492553711,
+        "y": 2.960291862487793
+      },
+      {
+        "attitude": 0.0,
+        "name": "animated",
+        "type": "VERB",
+        "value": 1,
+        "x": -18.003273010253906,
+        "y": 6.616662979125977
+      },
+      {
+        "attitude": 0.0,
+        "name": "area",
+        "type": "NOUN",
+        "value": 3,
+        "x": 3.3342840671539307,
+        "y": -15.33344841003418
+      },
+      {
+        "attitude": 0.0,
+        "name": "around",
+        "type": "ADP",
+        "value": 4,
+        "x": 1.5738906860351562,
+        "y": 12.575721740722656
+      },
+      {
+        "attitude": 0.0,
+        "name": "atrium",
+        "type": "NOUN",
+        "value": 3,
+        "x": 5.652803421020508,
+        "y": -13.475367546081543
+      },
+      {
+        "attitude": -0.6,
+        "name": "awkward",
+        "type": "ADJ",
+        "value": 1,
+        "x": -6.2401885986328125,
+        "y": 8.93133544921875
+      },
+      {
+        "attitude": 0.0,
+        "name": "balcony",
+        "type": "ADJ",
+        "value": 1,
+        "x": 0.5806547999382019,
+        "y": 0.47785964608192444
+      },
+      {
+        "attitude": 0.0,
+        "name": "banister",
+        "type": "NOUN",
+        "value": 1,
+        "x": 9.537210464477539,
+        "y": -4.687347888946533
+      },
+      {
+        "attitude": -0.8,
+        "name": "base",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.429251670837402,
+        "y": -8.889395713806152
+      },
+      {
+        "attitude": 0.5,
+        "name": "benefit more",
+        "type": "VERB",
+        "value": 1,
+        "x": 3.03471302986145,
+        "y": 8.49338436126709
+      },
+      {
+        "attitude": 0.0,
+        "name": "big",
+        "type": "ADJ",
+        "value": 5,
+        "x": -10.663741111755371,
+        "y": 10.314400672912598
+      },
+      {
+        "attitude": 0.0,
+        "name": "both",
+        "type": "DET",
+        "value": 1,
+        "x": -1.1103800535202026,
+        "y": 14.130218505859375
+      },
+      {
+        "attitude": 0.0,
+        "name": "bottom",
+        "type": "NOUN",
+        "value": 1,
+        "x": -5.2395124435424805,
+        "y": 6.924735069274902
+      },
+      {
+        "attitude": 0.0,
+        "name": "boxy",
+        "type": "ADJ",
+        "value": 1,
+        "x": -13.675186157226562,
+        "y": 6.095870018005371
+      },
+      {
+        "attitude": 0.0,
+        "name": "brick",
+        "type": "NOUN",
+        "value": 3,
+        "x": 1.2593499422073364,
+        "y": -10.54266357421875
+      },
+      {
+        "attitude": 0.7000000000000001,
+        "name": "bright",
+        "type": "ADJ",
+        "value": 2,
+        "x": -14.69045639038086,
+        "y": 7.221241474151611
+      },
+      {
+        "attitude": 0.0,
+        "name": "building",
+        "type": "NOUN",
+        "value": 4,
+        "x": 6.927971363067627,
+        "y": -18.816801071166992
+      },
+      {
+        "attitude": 0.0,
+        "name": "bunch",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.741109848022461,
+        "y": -1.5740824937820435
+      },
+      {
+        "attitude": 0.1,
+        "name": "busy",
+        "type": "ADJ",
+        "value": 3,
+        "x": -15.050468444824219,
+        "y": 13.941309928894043
+      },
+      {
+        "attitude": 0.30000000000000004,
+        "name": "calm",
+        "type": "ADJ",
+        "value": 1,
+        "x": -5.958566188812256,
+        "y": 5.137688159942627
+      },
+      {
+        "attitude": 0.0,
+        "name": "carpet",
+        "type": "NOUN",
+        "value": 4,
+        "x": -2.1277334690093994,
+        "y": -7.436382293701172
+      },
+      {
+        "attitude": -0.5000000000000001,
+        "name": "casually",
+        "type": "ADV",
+        "value": 1,
+        "x": -2.7153255939483643,
+        "y": 15.719229698181152
+      },
+      {
+        "attitude": 0.0,
+        "name": "ceiling",
+        "type": "NOUN",
+        "value": 9,
+        "x": 6.56801176071167,
+        "y": -18.238876342773438
+      },
+      {
+        "attitude": -0.1,
+        "name": "center",
+        "type": "NOUN",
+        "value": 6,
+        "x": 8.888972282409668,
+        "y": -7.452114582061768
+      },
+      {
+        "attitude": 0.0,
+        "name": "central",
+        "type": "ADJ",
+        "value": 3,
+        "x": -8.225796699523926,
+        "y": 9.450849533081055
+      },
+      {
+        "attitude": 0.0,
+        "name": "chair",
+        "type": "NOUN",
+        "value": 13,
+        "x": 5.703411102294922,
+        "y": -15.067928314208984
+      },
+      {
+        "attitude": 0.0,
+        "name": "change",
+        "type": "NOUN",
+        "value": 1,
+        "x": 6.70085334777832,
+        "y": -3.9163520336151123
+      },
+      {
+        "attitude": 0.0,
+        "name": "chaotic",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.969411849975586,
+        "y": 8.767278671264648
+      },
+      {
+        "attitude": 0.0,
+        "name": "chill",
+        "type": "VERB",
+        "value": 1,
+        "x": 7.112188816070557,
+        "y": -3.75217866897583
+      },
+      {
+        "attitude": 0.0,
+        "name": "circular",
+        "type": "ADJ",
+        "value": 7,
+        "x": -9.594303131103516,
+        "y": 10.17848014831543
+      },
+      {
+        "attitude": 0.0,
+        "name": "circulation",
+        "type": "NOUN",
+        "value": 2,
+        "x": 4.887689113616943,
+        "y": -14.387676239013672
+      },
+      {
+        "attitude": 0.0,
+        "name": "cluster",
+        "type": "NOUN",
+        "value": 1,
+        "x": 9.534673690795898,
+        "y": -13.866866111755371
+      },
+      {
+        "attitude": 0.0,
+        "name": "coffee",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.752021074295044,
+        "y": -15.629408836364746
+      },
+      {
+        "attitude": -0.6,
+        "name": "cold",
+        "type": "ADJ",
+        "value": 1,
+        "x": -9.261634826660156,
+        "y": 8.020495414733887
+      },
+      {
+        "attitude": 0.0,
+        "name": "color",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.180914878845215,
+        "y": -7.103575229644775
+      },
+      {
+        "attitude": 0.0,
+        "name": "come here",
+        "type": "VERB",
+        "value": 1,
+        "x": 4.6589884757995605,
+        "y": 9.102165222167969
+      },
+      {
+        "attitude": 0.0,
+        "name": "comfort",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.701591491699219,
+        "y": -9.536141395568848
+      },
+      {
+        "attitude": 0.4,
+        "name": "comfortable",
+        "type": "ADJ",
+        "value": 3,
+        "x": -15.16968059539795,
+        "y": 12.4735746383667
+      },
+      {
+        "attitude": -0.3,
+        "name": "common",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.766401290893555,
+        "y": 10.044506072998047
+      },
+      {
+        "attitude": 0.0,
+        "name": "communal",
+        "type": "ADJ",
+        "value": 2,
+        "x": -13.438604354858398,
+        "y": 8.531906127929688
+      },
+      {
+        "attitude": 0.0,
+        "name": "connected",
+        "type": "VERB",
+        "value": 1,
+        "x": -17.982707977294922,
+        "y": 6.61852502822876
+      },
+      {
+        "attitude": 0.0,
+        "name": "conservation",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.827545642852783,
+        "y": -17.446701049804688
+      },
+      {
+        "attitude": 0.0,
+        "name": "contradictory",
+        "type": "ADJ",
+        "value": 1,
+        "x": -11.898883819580078,
+        "y": 8.811668395996094
+      },
+      {
+        "attitude": 0.0,
+        "name": "control",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.4664125442504883,
+        "y": -5.925243854522705
+      },
+      {
+        "attitude": 0.0,
+        "name": "convenience",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.482223987579346,
+        "y": -13.96806812286377
+      },
+      {
+        "attitude": 0.0,
+        "name": "convenient",
+        "type": "ADJ",
+        "value": 1,
+        "x": -4.5035200119018555,
+        "y": 10.239437103271484
+      },
+      {
+        "attitude": 0.0,
+        "name": "converge",
+        "type": "VERB",
+        "value": 1,
+        "x": 8.175079345703125,
+        "y": -2.534385919570923
+      },
+      {
+        "attitude": 0.0,
+        "name": "couch",
+        "type": "NOUN",
+        "value": 2,
+        "x": 0.31604015827178955,
+        "y": -9.248933792114258
+      },
+      {
+        "attitude": 0.0,
+        "name": "courtyard",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.514771938323975,
+        "y": -9.823451042175293
+      },
+      {
+        "attitude": 0.0,
+        "name": "cream",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.04728230834007263,
+        "y": -6.901035308837891
+      },
+      {
+        "attitude": 0.0,
+        "name": "crowd",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.3119430541992188,
+        "y": -4.188045501708984
+      },
+      {
+        "attitude": 0.0,
+        "name": "curve",
+        "type": "NOUN",
+        "value": 3,
+        "x": 3.2600972652435303,
+        "y": -5.984402656555176
+      },
+      {
+        "attitude": 0.0,
+        "name": "cylindrical",
+        "type": "ADJ",
+        "value": 3,
+        "x": -4.546661376953125,
+        "y": 4.812871932983398
+      },
+      {
+        "attitude": 0.0,
+        "name": "dance",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.7669356465339661,
+        "y": -13.647756576538086
+      },
+      {
+        "attitude": -0.6,
+        "name": "dangerous",
+        "type": "ADJ",
+        "value": 1,
+        "x": -13.343025207519531,
+        "y": 11.742254257202148
+      },
+      {
+        "attitude": -0.15,
+        "name": "dark",
+        "type": "ADJ",
+        "value": 2,
+        "x": -7.864536285400391,
+        "y": 5.600363731384277
+      },
+      {
+        "attitude": 0.0,
+        "name": "day",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.598745346069336,
+        "y": -12.971217155456543
+      },
+      {
+        "attitude": 0.0,
+        "name": "deep",
+        "type": "ADJ",
+        "value": 1,
+        "x": -8.458830833435059,
+        "y": 14.456014633178711
+      },
+      {
+        "attitude": 0.0,
+        "name": "define",
+        "type": "VERB",
+        "value": 1,
+        "x": 5.8223748207092285,
+        "y": -0.9971482157707214
+      },
+      {
+        "attitude": 0.0,
+        "name": "dense",
+        "type": "ADJ",
+        "value": 1,
+        "x": -8.619203567504883,
+        "y": 6.817592620849609
+      },
+      {
+        "attitude": 0.0,
+        "name": "design",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.017887592315674,
+        "y": -10.912644386291504
+      },
+      {
+        "attitude": 0.0,
+        "name": "desk",
+        "type": "NOUN",
+        "value": 1,
+        "x": 9.07302474975586,
+        "y": -16.04475212097168
+      },
+      {
+        "attitude": 0.0,
+        "name": "detail",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.4201507568359375,
+        "y": -15.409602165222168
+      },
+      {
+        "attitude": 0.0,
+        "name": "different",
+        "type": "ADJ",
+        "value": 3,
+        "x": -10.493452072143555,
+        "y": 11.321462631225586
+      },
+      {
+        "attitude": 0.1,
+        "name": "dim",
+        "type": "ADJ",
+        "value": 1,
+        "x": -7.396176338195801,
+        "y": 4.540045261383057
+      },
+      {
+        "attitude": 0.0,
+        "name": "diminish",
+        "type": "ADJ",
+        "value": 1,
+        "x": -3.9674248695373535,
+        "y": 3.1565632820129395
+      },
+      {
+        "attitude": 0.0,
+        "name": "direction",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.725806474685669,
+        "y": -15.759150505065918
+      },
+      {
+        "attitude": 0.0,
+        "name": "distance",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.0429887771606445,
+        "y": -14.253216743469238
+      },
+      {
+        "attitude": 0.3,
+        "name": "distinct",
+        "type": "ADJ",
+        "value": 2,
+        "x": -16.20530891418457,
+        "y": 10.032447814941406
+      },
+      {
+        "attitude": -0.5,
+        "name": "disturbing",
+        "type": "VERB",
+        "value": 1,
+        "x": -15.650640487670898,
+        "y": 2.6645727157592773
+      },
+      {
+        "attitude": 0.0,
+        "name": "door",
+        "type": "NOUN",
+        "value": 4,
+        "x": 7.388060569763184,
+        "y": -14.338993072509766
+      },
+      {
+        "attitude": 0.0,
+        "name": "double",
+        "type": "ADJ",
+        "value": 4,
+        "x": -11.188597679138184,
+        "y": 3.315690279006958
+      },
+      {
+        "attitude": -0.15555555555555559,
+        "name": "down",
+        "type": "ADP",
+        "value": 2,
+        "x": 1.0437666177749634,
+        "y": 12.293335914611816
+      },
+      {
+        "attitude": 0.0,
+        "name": "dynamic",
+        "type": "ADJ",
+        "value": 1,
+        "x": -10.444096565246582,
+        "y": 7.618699550628662
+      },
+      {
+        "attitude": 0.43333333333333335,
+        "name": "easy",
+        "type": "ADJ",
+        "value": 2,
+        "x": -7.637988090515137,
+        "y": 12.75357723236084
+      },
+      {
+        "attitude": 0.0,
+        "name": "eat",
+        "type": "VERB",
+        "value": 1,
+        "x": 5.834860324859619,
+        "y": 2.128136396408081
+      },
+      {
+        "attitude": 0.0,
+        "name": "echo",
+        "type": "VERB",
+        "value": 2,
+        "x": 4.47200345993042,
+        "y": -3.0835485458374023
+      },
+      {
+        "attitude": 0.25,
+        "name": "educational",
+        "type": "ADJ",
+        "value": 1,
+        "x": -12.789566993713379,
+        "y": 9.506028175354004
+      },
+      {
+        "attitude": 0.6,
+        "name": "effective",
+        "type": "ADJ",
+        "value": 1,
+        "x": -12.739428520202637,
+        "y": 9.04981517791748
+      },
+      {
+        "attitude": 0.5,
+        "name": "elegant",
+        "type": "ADJ",
+        "value": 1,
+        "x": -10.16183853149414,
+        "y": 11.559327125549316
+      },
+      {
+        "attitude": 0.0,
+        "name": "emphasize",
+        "type": "VERB",
+        "value": 1,
+        "x": 7.674236297607422,
+        "y": -2.3599767684936523
+      },
+      {
+        "attitude": 0.0,
+        "name": "enclose",
+        "type": "NOUN",
+        "value": 1,
+        "x": -2.099886178970337,
+        "y": -10.042905807495117
+      },
+      {
+        "attitude": 0.5,
+        "name": "energetic",
+        "type": "ADJ",
+        "value": 1,
+        "x": -13.90559196472168,
+        "y": 10.057024955749512
+      },
+      {
+        "attitude": 0.0,
+        "name": "enough",
+        "type": "ADJ",
+        "value": 1,
+        "x": -7.006791114807129,
+        "y": 13.203351020812988
+      },
+      {
+        "attitude": 0.0,
+        "name": "enter",
+        "type": "VERB",
+        "value": 2,
+        "x": 7.711855888366699,
+        "y": 0.15172480046749115
+      },
+      {
+        "attitude": 0.0,
+        "name": "entrance",
+        "type": "NOUN",
+        "value": 3,
+        "x": 6.429230213165283,
+        "y": -11.0009183883667
+      },
+      {
+        "attitude": 0.0,
+        "name": "entropy",
+        "type": "ADJ",
+        "value": 1,
+        "x": 3.7944741249084473,
+        "y": 1.059389352798462
+      },
+      {
+        "attitude": 0.0,
+        "name": "environment",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.6373021602630615,
+        "y": -10.607084274291992
+      },
+      {
+        "attitude": 0.0,
+        "name": "evening",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.66310977935791,
+        "y": -16.737354278564453
+      },
+      {
+        "attitude": 0.0,
+        "name": "event",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.2001712322235107,
+        "y": -10.25007152557373
+      },
+      {
+        "attitude": 0.0,
+        "name": "everything",
+        "type": "NOUN",
+        "value": 1,
+        "x": 6.882718563079834,
+        "y": -16.25863265991211
+      },
+      {
+        "attitude": 0.6666666666666666,
+        "name": "exceptional",
+        "type": "ADJ",
+        "value": 1,
+        "x": -11.864679336547852,
+        "y": 8.999817848205566
+      },
+      {
+        "attitude": 0.0,
+        "name": "exhibit",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.2407732009887695,
+        "y": -5.849081516265869
+      },
+      {
+        "attitude": -0.125,
+        "name": "extremely",
+        "type": "ADV",
+        "value": 2,
+        "x": -2.508000135421753,
+        "y": 16.38405990600586
+      },
+      {
+        "attitude": 0.0,
+        "name": "extrovert",
+        "type": "NOUN",
+        "value": 1,
+        "x": 6.106143474578857,
+        "y": -3.065596103668213
+      },
+      {
+        "attitude": 0.0,
+        "name": "facilitate",
+        "type": "ADJ",
+        "value": 1,
+        "x": -0.30755171179771423,
+        "y": 0.5671786069869995
+      },
+      {
+        "attitude": 0.5,
+        "name": "famous",
+        "type": "ADJ",
+        "value": 1,
+        "x": -13.362586975097656,
+        "y": 12.563102722167969
+      },
+      {
+        "attitude": 0.7,
+        "name": "fascinating",
+        "type": "ADJ",
+        "value": 2,
+        "x": -15.44660472869873,
+        "y": 3.778104782104492
+      },
+      {
+        "attitude": 0.0,
+        "name": "fill",
+        "type": "VERB",
+        "value": 1,
+        "x": 10.394790649414062,
+        "y": -1.417694330215454
+      },
+      {
+        "attitude": 0.0,
+        "name": "find",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.0815749168396,
+        "y": 0.9622724056243896
+      },
+      {
+        "attitude": 0.4166666666666667,
+        "name": "fine",
+        "type": "ADJ",
+        "value": 1,
+        "x": -8.028396606445312,
+        "y": 8.259572982788086
+      },
+      {
+        "attitude": 0.0,
+        "name": "flag",
+        "type": "NOUN",
+        "value": 2,
+        "x": 0.9021325707435608,
+        "y": -11.213831901550293
+      },
+      {
+        "attitude": 0.0,
+        "name": "flank",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.230897426605225,
+        "y": -4.528053283691406
+      },
+      {
+        "attitude": 0.0,
+        "name": "float",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.676462173461914,
+        "y": -3.5380940437316895
+      },
+      {
+        "attitude": 0.0,
+        "name": "floor",
+        "type": "NOUN",
+        "value": 10,
+        "x": 3.89626407623291,
+        "y": -13.259115219116211
+      },
+      {
+        "attitude": 0.0,
+        "name": "focal",
+        "type": "ADJ",
+        "value": 1,
+        "x": -10.537690162658691,
+        "y": 8.459370613098145
+      },
+      {
+        "attitude": 0.0,
+        "name": "food",
+        "type": "NOUN",
+        "value": 2,
+        "x": 4.2324748039245605,
+        "y": -14.976972579956055
+      },
+      {
+        "attitude": 0.0,
+        "name": "force",
+        "type": "NOUN",
+        "value": 1,
+        "x": 6.814838886260986,
+        "y": -5.471868991851807
+      },
+      {
+        "attitude": 0.0,
+        "name": "frame",
+        "type": "NOUN",
+        "value": 2,
+        "x": 1.3189606666564941,
+        "y": -14.206951141357422
+      },
+      {
+        "attitude": 0.0,
+        "name": "friend",
+        "type": "NOUN",
+        "value": 2,
+        "x": 3.1826114654541016,
+        "y": -8.02398681640625
+      },
+      {
+        "attitude": 0.0,
+        "name": "function",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.111032009124756,
+        "y": -6.838698863983154
+      },
+      {
+        "attitude": 0.0,
+        "name": "furniture",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.9761483669281006,
+        "y": -7.314214706420898
+      },
+      {
+        "attitude": 0.0,
+        "name": "gallery",
+        "type": "NOUN",
+        "value": 1,
+        "x": 6.247555732727051,
+        "y": -8.087876319885254
+      },
+      {
+        "attitude": 0.0,
+        "name": "german",
+        "type": "ADJ",
+        "value": 1,
+        "x": -9.252339363098145,
+        "y": 6.114614486694336
+      },
+      {
+        "attitude": 0.7,
+        "name": "good",
+        "type": "ADJ",
+        "value": 5,
+        "x": -9.715226173400879,
+        "y": 9.935060501098633
+      },
+      {
+        "attitude": 0.5,
+        "name": "grand",
+        "type": "ADJ",
+        "value": 1,
+        "x": -7.066797733306885,
+        "y": 6.916228771209717
+      },
+      {
+        "attitude": 0.0,
+        "name": "gray",
+        "type": "ADJ",
+        "value": 2,
+        "x": -11.802301406860352,
+        "y": 7.514847755432129
+      },
+      {
+        "attitude": 0.0,
+        "name": "grayish",
+        "type": "ADJ",
+        "value": 1,
+        "x": -5.301673412322998,
+        "y": 4.738986492156982
+      },
+      {
+        "attitude": 0.8,
+        "name": "great",
+        "type": "ADJ",
+        "value": 1,
+        "x": -10.638198852539062,
+        "y": 13.08965015411377
+      },
+      {
+        "attitude": 0.0,
+        "name": "ground",
+        "type": "NOUN",
+        "value": 2,
+        "x": 1.42063570022583,
+        "y": -16.44272804260254
+      },
+      {
+        "attitude": 0.0,
+        "name": "group",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.0516910552978516,
+        "y": -13.876601219177246
+      },
+      {
+        "attitude": 0.0,
+        "name": "grow",
+        "type": "VERB",
+        "value": 1,
+        "x": 8.823532104492188,
+        "y": 1.1175376176834106
+      },
+      {
+        "attitude": 0.0,
+        "name": "hall",
+        "type": "NOUN",
+        "value": 1,
+        "x": 1.5292998552322388,
+        "y": -8.570929527282715
+      },
+      {
+        "attitude": 0.0,
+        "name": "hang out",
+        "type": "VERB",
+        "value": 2,
+        "x": 4.670113563537598,
+        "y": 10.849991798400879
+      },
+      {
+        "attitude": -0.2916666666666667,
+        "name": "hard",
+        "type": "ADJ",
+        "value": 1,
+        "x": -8.024738311767578,
+        "y": 12.999698638916016
+      },
+      {
+        "attitude": 0.0,
+        "name": "hear",
+        "type": "VERB",
+        "value": 3,
+        "x": 9.870139122009277,
+        "y": 0.11962121725082397
+      },
+      {
+        "attitude": 0.0,
+        "name": "heat",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.618391990661621,
+        "y": -10.76145076751709
+      },
+      {
+        "attitude": 0.0,
+        "name": "height",
+        "type": "NOUN",
+        "value": 5,
+        "x": 2.0727570056915283,
+        "y": -11.869857788085938
+      },
+      {
+        "attitude": 0.16,
+        "name": "high",
+        "type": "ADJ",
+        "value": 3,
+        "x": -8.560312271118164,
+        "y": 12.183980941772461
+      },
+      {
+        "attitude": 0.0,
+        "name": "hodge",
+        "type": "ADJ",
+        "value": 1,
+        "x": -6.193289756774902,
+        "y": 1.8490747213363647
+      },
+      {
+        "attitude": 0.0,
+        "name": "homely",
+        "type": "ADV",
+        "value": 1,
+        "x": -3.014672040939331,
+        "y": 16.943370819091797
+      },
+      {
+        "attitude": 0.0,
+        "name": "homework",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.801462650299072,
+        "y": -11.853665351867676
+      },
+      {
+        "attitude": 0.0,
+        "name": "however",
+        "type": "ADV",
+        "value": 1,
+        "x": -1.7111141681671143,
+        "y": 16.769689559936523
+      },
+      {
+        "attitude": 0.4000000000000001,
+        "name": "huge",
+        "type": "ADJ",
+        "value": 1,
+        "x": -11.539983749389648,
+        "y": 11.414048194885254
+      },
+      {
+        "attitude": 0.9,
+        "name": "ideal",
+        "type": "ADJ",
+        "value": 2,
+        "x": -6.954017162322998,
+        "y": 7.504520416259766
+      },
+      {
+        "attitude": 0.0,
+        "name": "individual",
+        "type": "ADJ",
+        "value": 2,
+        "x": -10.534212112426758,
+        "y": 7.155379772186279
+      },
+      {
+        "attitude": 0.0,
+        "name": "info",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.17982292175293,
+        "y": -13.00196361541748
+      },
+      {
+        "attitude": 0.0,
+        "name": "interact",
+        "type": "ADJ",
+        "value": 1,
+        "x": -6.921015739440918,
+        "y": 3.2607533931732178
+      },
+      {
+        "attitude": 0.5,
+        "name": "interesting",
+        "type": "ADJ",
+        "value": 2,
+        "x": -11.252140045166016,
+        "y": 12.005172729492188
+      },
+      {
+        "attitude": 0.2,
+        "name": "intimate",
+        "type": "ADJ",
+        "value": 2,
+        "x": -12.142837524414062,
+        "y": 5.836727142333984
+      },
+      {
+        "attitude": 0.0,
+        "name": "introvert",
+        "type": "ADJ",
+        "value": 1,
+        "x": 1.5838316679000854,
+        "y": -1.6790640354156494
+      },
+      {
+        "attitude": 0.0,
+        "name": "invite",
+        "type": "VERB",
+        "value": 1,
+        "x": 3.8470802307128906,
+        "y": 1.0033531188964844
+      },
+      {
+        "attitude": 0.0,
+        "name": "juncture",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.6056928634643555,
+        "y": -8.802833557128906
+      },
+      {
+        "attitude": 0.0,
+        "name": "lack",
+        "type": "NOUN",
+        "value": 1,
+        "x": 1.6290785074234009,
+        "y": -6.344853401184082
+      },
+      {
+        "attitude": 0.21428571428571427,
+        "name": "large",
+        "type": "ADJ",
+        "value": 2,
+        "x": -12.138218879699707,
+        "y": 6.25022029876709
+      },
+      {
+        "attitude": 0.0,
+        "name": "lead",
+        "type": "ADJ",
+        "value": 2,
+        "x": 4.951642990112305,
+        "y": -0.5340355038642883
+      },
+      {
+        "attitude": 0.4,
+        "name": "light",
+        "type": "ADJ",
+        "value": 3,
+        "x": -5.9353861808776855,
+        "y": 6.322742938995361
+      },
+      {
+        "attitude": 0.0,
+        "name": "like",
+        "type": "ADP",
+        "value": 1,
+        "x": 2.5082759857177734,
+        "y": 13.708015441894531
+      },
+      {
+        "attitude": -0.1875,
+        "name": "little",
+        "type": "ADJ",
+        "value": 2,
+        "x": -13.116169929504395,
+        "y": 14.232277870178223
+      },
+      {
+        "attitude": 0.13636363636363635,
+        "name": "lively",
+        "type": "ADJ",
+        "value": 1,
+        "x": -9.182936668395996,
+        "y": 13.523042678833008
+      },
+      {
+        "attitude": -0.05,
+        "name": "long",
+        "type": "ADJ",
+        "value": 1,
+        "x": -7.9281182289123535,
+        "y": 13.622401237487793
+      },
+      {
+        "attitude": 0.0,
+        "name": "look",
+        "type": "VERB",
+        "value": 2,
+        "x": 6.3089070320129395,
+        "y": -0.03505512326955795
+      },
+      {
+        "attitude": 0.1,
+        "name": "loud",
+        "type": "ADJ",
+        "value": 3,
+        "x": -8.33873462677002,
+        "y": 12.39428997039795
+      },
+      {
+        "attitude": 0.0,
+        "name": "lounge",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.686278820037842,
+        "y": -6.863747596740723
+      },
+      {
+        "attitude": 0.5,
+        "name": "love",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.620795726776123,
+        "y": -5.919893741607666
+      },
+      {
+        "attitude": 0.0,
+        "name": "low",
+        "type": "ADJ",
+        "value": 1,
+        "x": -9.335721969604492,
+        "y": 9.29476547241211
+      },
+      {
+        "attitude": 0.0,
+        "name": "make",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.608396053314209,
+        "y": 0.9819806218147278
+      },
+      {
+        "attitude": 0.0,
+        "name": "marble",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.5833942890167236,
+        "y": -11.874274253845215
+      },
+      {
+        "attitude": 0.0,
+        "name": "match well",
+        "type": "VERB",
+        "value": 1,
+        "x": 2.6355361938476562,
+        "y": 8.784692764282227
+      },
+      {
+        "attitude": 0.0,
+        "name": "meet",
+        "type": "VERB",
+        "value": 3,
+        "x": 9.65766716003418,
+        "y": -0.8438736796379089
+      },
+      {
+        "attitude": 0.0,
+        "name": "meeting",
+        "type": "NOUN",
+        "value": 2,
+        "x": 6.845737934112549,
+        "y": -18.762439727783203
+      },
+      {
+        "attitude": 0.0,
+        "name": "metal",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.804043769836426,
+        "y": -12.264191627502441
+      },
+      {
+        "attitude": 0.0,
+        "name": "middle",
+        "type": "ADJ",
+        "value": 1,
+        "x": -6.7612996101379395,
+        "y": 6.129857540130615
+      },
+      {
+        "attitude": 0.0,
+        "name": "mix here",
+        "type": "VERB",
+        "value": 1,
+        "x": 4.445308685302734,
+        "y": 9.113386154174805
+      },
+      {
+        "attitude": 0.0,
+        "name": "moderate",
+        "type": "ADJ",
+        "value": 1,
+        "x": -11.87941837310791,
+        "y": 13.75379467010498
+      },
+      {
+        "attitude": 0.2,
+        "name": "modern",
+        "type": "ADJ",
+        "value": 1,
+        "x": -7.026472091674805,
+        "y": 9.067913055419922
+      },
+      {
+        "attitude": 0.0,
+        "name": "morally",
+        "type": "ADV",
+        "value": 1,
+        "x": -3.2082769870758057,
+        "y": 16.070024490356445
+      },
+      {
+        "attitude": 0.0,
+        "name": "move",
+        "type": "VERB",
+        "value": 2,
+        "x": 6.6599602699279785,
+        "y": -1.363333821296692
+      },
+      {
+        "attitude": 0.0,
+        "name": "multiple",
+        "type": "ADJ",
+        "value": 1,
+        "x": -7.383694648742676,
+        "y": 6.87406587600708
+      },
+      {
+        "attitude": 0.1,
+        "name": "natural",
+        "type": "ADJ",
+        "value": 1,
+        "x": -11.0353364944458,
+        "y": 10.146016120910645
+      },
+      {
+        "attitude": 0.0,
+        "name": "navigate around",
+        "type": "VERB",
+        "value": 1,
+        "x": 2.8652915954589844,
+        "y": 10.778156280517578
+      },
+      {
+        "attitude": 0.6,
+        "name": "nice",
+        "type": "ADJ",
+        "value": 3,
+        "x": -13.252069473266602,
+        "y": 13.846835136413574
+      },
+      {
+        "attitude": 0.0,
+        "name": "node",
+        "type": "ADJ",
+        "value": 1,
+        "x": -16.714996337890625,
+        "y": 8.43368148803711
+      },
+      {
+        "attitude": 0.0,
+        "name": "noisy",
+        "type": "ADJ",
+        "value": 3,
+        "x": -10.431772232055664,
+        "y": 5.054718494415283
+      },
+      {
+        "attitude": 0.0,
+        "name": "notice",
+        "type": "NOUN",
+        "value": 1,
+        "x": 8.478263854980469,
+        "y": -3.576256036758423
+      },
+      {
+        "attitude": 0.0,
+        "name": "occupy",
+        "type": "ADJ",
+        "value": 2,
+        "x": -1.8374463319778442,
+        "y": 1.1018624305725098
+      },
+      {
+        "attitude": 0.0,
+        "name": "open",
+        "type": "ADJ",
+        "value": 6,
+        "x": -8.596341133117676,
+        "y": 4.834607124328613
+      },
+      {
+        "attitude": 0.0,
+        "name": "opportunity",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.2160656452178955,
+        "y": -9.91757869720459
+      },
+      {
+        "attitude": 0.0,
+        "name": "opposite",
+        "type": "ADJ",
+        "value": 2,
+        "x": -4.264252185821533,
+        "y": 9.39114761352539
+      },
+      {
+        "attitude": 0.0,
+        "name": "out",
+        "type": "PART",
+        "value": 4,
+        "x": 0.6579933762550354,
+        "y": 12.163911819458008
+      },
+      {
+        "attitude": 0.0,
+        "name": "part",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.9030113220214844,
+        "y": -8.758418083190918
+      },
+      {
+        "attitude": 0.0,
+        "name": "pass by",
+        "type": "VERB",
+        "value": 1,
+        "x": 4.340985298156738,
+        "y": 10.365861892700195
+      },
+      {
+        "attitude": 0.0,
+        "name": "people",
+        "type": "NOUN",
+        "value": 8,
+        "x": -0.10601088404655457,
+        "y": 4.427384853363037
+      },
+      {
+        "attitude": 0.0,
+        "name": "perspective",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.449164390563965,
+        "y": -7.747671127319336
+      },
+      {
+        "attitude": 0.0,
+        "name": "place",
+        "type": "NOUN",
+        "value": 5,
+        "x": 0.41721946001052856,
+        "y": -14.595845222473145
+      },
+      {
+        "attitude": 0.0,
+        "name": "placement",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.4468464851379395,
+        "y": -11.556192398071289
+      },
+      {
+        "attitude": 0.7333333333333333,
+        "name": "pleasant",
+        "type": "ADJ",
+        "value": 1,
+        "x": -12.966641426086426,
+        "y": 7.6041083335876465
+      },
+      {
+        "attitude": 0.0,
+        "name": "pod",
+        "type": "NOUN",
+        "value": 1,
+        "x": 8.986032485961914,
+        "y": -11.567081451416016
+      },
+      {
+        "attitude": 0.0,
+        "name": "podge",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.885190486907959,
+        "y": -7.229704856872559
+      },
+      {
+        "attitude": 0.0,
+        "name": "point",
+        "type": "NOUN",
+        "value": 2,
+        "x": 3.641773223876953,
+        "y": -9.246119499206543
+      },
+      {
+        "attitude": 0.0,
+        "name": "position",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.288794755935669,
+        "y": -8.22494125366211
+      },
+      {
+        "attitude": 0.0,
+        "name": "post",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.0169302225112915,
+        "y": -11.490296363830566
+      },
+      {
+        "attitude": 0.0,
+        "name": "poster",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.197662591934204,
+        "y": -14.611967086791992
+      },
+      {
+        "attitude": 0.25,
+        "name": "pretty",
+        "type": "ADJ",
+        "value": 4,
+        "x": -8.933592796325684,
+        "y": 15.285757064819336
+      },
+      {
+        "attitude": 0.0,
+        "name": "printer",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.094593524932861,
+        "y": -9.989556312561035
+      },
+      {
+        "attitude": 0.0,
+        "name": "privacy",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.575840473175049,
+        "y": -13.179342269897461
+      },
+      {
+        "attitude": 0.0,
+        "name": "productive",
+        "type": "ADJ",
+        "value": 1,
+        "x": -13.896245002746582,
+        "y": 8.819273948669434
+      },
+      {
+        "attitude": 0.0,
+        "name": "public",
+        "type": "ADJ",
+        "value": 2,
+        "x": -9.739971160888672,
+        "y": 7.330571174621582
+      },
+      {
+        "attitude": 0.0,
+        "name": "purposely",
+        "type": "ADV",
+        "value": 1,
+        "x": -2.7493538856506348,
+        "y": 16.787860870361328
+      },
+      {
+        "attitude": -0.5,
+        "name": "questionable",
+        "type": "ADJ",
+        "value": 1,
+        "x": -15.591071128845215,
+        "y": 11.95470142364502
+      },
+      {
+        "attitude": 0.3,
+        "name": "rarely",
+        "type": "ADV",
+        "value": 1,
+        "x": -3.1288881301879883,
+        "y": 16.96483612060547
+      },
+      {
+        "attitude": 0.0,
+        "name": "recital",
+        "type": "ADJ",
+        "value": 1,
+        "x": -6.296368598937988,
+        "y": 7.915002822875977
+      },
+      {
+        "attitude": 0.0,
+        "name": "relax",
+        "type": "VERB",
+        "value": 1,
+        "x": 8.54027271270752,
+        "y": 0.9931706190109253
+      },
+      {
+        "attitude": 0.0,
+        "name": "relaxing",
+        "type": "VERB",
+        "value": 1,
+        "x": -15.647801399230957,
+        "y": 2.678037643432617
+      },
+      {
+        "attitude": 0.0,
+        "name": "remind",
+        "type": "VERB",
+        "value": 1,
+        "x": 2.339292287826538,
+        "y": -0.44179099798202515
+      },
+      {
+        "attitude": 0.0,
+        "name": "restaurant",
+        "type": "NOUN",
+        "value": 2,
+        "x": 3.907644271850586,
+        "y": -13.111639976501465
+      },
+      {
+        "attitude": 0.0,
+        "name": "reverberance",
+        "type": "NOUN",
+        "value": 1,
+        "x": 0.9822397828102112,
+        "y": -13.397668838500977
+      },
+      {
+        "attitude": 0.0,
+        "name": "revolving",
+        "type": "VERB",
+        "value": 2,
+        "x": -15.62706184387207,
+        "y": 2.7112643718719482
+      },
+      {
+        "attitude": 0.0,
+        "name": "revolving door",
+        "type": "VERB",
+        "value": 1,
+        "x": 7.9917120933532715,
+        "y": -14.762568473815918
+      },
+      {
+        "attitude": 0.0,
+        "name": "room",
+        "type": "NOUN",
+        "value": 2,
+        "x": 5.310504913330078,
+        "y": -7.7593092918396
+      },
+      {
+        "attitude": -0.2,
+        "name": "round",
+        "type": "ADJ",
+        "value": 1,
+        "x": -4.861302852630615,
+        "y": 8.651304244995117
+      },
+      {
+        "attitude": 0.5,
+        "name": "safe",
+        "type": "ADJ",
+        "value": 1,
+        "x": -12.355669975280762,
+        "y": 11.465953826904297
+      },
+      {
+        "attitude": 0.0,
+        "name": "seat",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.11064580082893372,
+        "y": -15.217247009277344
+      },
+      {
+        "attitude": 0.0,
+        "name": "seating",
+        "type": "VERB",
+        "value": 3,
+        "x": 7.212831974029541,
+        "y": -19.13898277282715
+      },
+      {
+        "attitude": 0.0,
+        "name": "second",
+        "type": "ADJ",
+        "value": 5,
+        "x": -8.077071189880371,
+        "y": 14.450173377990723
+      },
+      {
+        "attitude": 0.0,
+        "name": "shop",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.295679569244385,
+        "y": -9.950201988220215
+      },
+      {
+        "attitude": 0.0,
+        "name": "shuffle around",
+        "type": "VERB",
+        "value": 1,
+        "x": 2.993943691253662,
+        "y": 10.15850830078125
+      },
+      {
+        "attitude": 0.0,
+        "name": "side",
+        "type": "NOUN",
+        "value": 1,
+        "x": 1.8680442571640015,
+        "y": -1.9765125513076782
+      },
+      {
+        "attitude": 0.0,
+        "name": "signature",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.119024276733398,
+        "y": -11.013801574707031
+      },
+      {
+        "attitude": 0.0,
+        "name": "sit",
+        "type": "VERB",
+        "value": 5,
+        "x": 7.88866662979126,
+        "y": -0.33136171102523804
+      },
+      {
+        "attitude": 0.0,
+        "name": "sit there",
+        "type": "VERB",
+        "value": 1,
+        "x": 4.395628452301025,
+        "y": 8.773396492004395
+      },
+      {
+        "attitude": 0.0,
+        "name": "skylight",
+        "type": "ADJ",
+        "value": 4,
+        "x": -15.462648391723633,
+        "y": 6.677087783813477
+      },
+      {
+        "attitude": 0.0,
+        "name": "sleep",
+        "type": "NOUN",
+        "value": 1,
+        "x": 8.086173057556152,
+        "y": -9.384209632873535
+      },
+      {
+        "attitude": -0.25,
+        "name": "small",
+        "type": "ADJ",
+        "value": 2,
+        "x": -12.876248359680176,
+        "y": 10.491349220275879
+      },
+      {
+        "attitude": 0.0,
+        "name": "smell",
+        "type": "NOUN",
+        "value": 1,
+        "x": 9.525325775146484,
+        "y": -9.340010643005371
+      },
+      {
+        "attitude": 0.0,
+        "name": "socialize",
+        "type": "VERB",
+        "value": 1,
+        "x": 8.950532913208008,
+        "y": -1.4645346403121948
+      },
+      {
+        "attitude": 0.0,
+        "name": "sofa",
+        "type": "NOUN",
+        "value": 1,
+        "x": 2.5932931900024414,
+        "y": -17.864452362060547
+      },
+      {
+        "attitude": 0.0,
+        "name": "solo",
+        "type": "NOUN",
+        "value": 1,
+        "x": -1.0858709812164307,
+        "y": 5.661654472351074
+      },
+      {
+        "attitude": 0.0,
+        "name": "spacious",
+        "type": "ADJ",
+        "value": 1,
+        "x": -13.457179069519043,
+        "y": 11.789456367492676
+      },
+      {
+        "attitude": 0.0,
+        "name": "spatially",
+        "type": "ADV",
+        "value": 1,
+        "x": -1.978759765625,
+        "y": 15.664743423461914
+      },
+      {
+        "attitude": 0.0,
+        "name": "speak",
+        "type": "VERB",
+        "value": 1,
+        "x": 8.458934783935547,
+        "y": -1.6335315704345703
+      },
+      {
+        "attitude": 0.0,
+        "name": "square",
+        "type": "ADJ",
+        "value": 3,
+        "x": -8.477476119995117,
+        "y": 10.548920631408691
+      },
+      {
+        "attitude": 0.0,
+        "name": "stage",
+        "type": "NOUN",
+        "value": 1,
+        "x": 5.799551010131836,
+        "y": -6.5358781814575195
+      },
+      {
+        "attitude": 0.0,
+        "name": "stair",
+        "type": "NOUN",
+        "value": 3,
+        "x": -0.8543098568916321,
+        "y": -8.188552856445312
+      },
+      {
+        "attitude": 0.0,
+        "name": "staircase",
+        "type": "NOUN",
+        "value": 10,
+        "x": 9.812870979309082,
+        "y": -10.216200828552246
+      },
+      {
+        "attitude": 0.0,
+        "name": "sterile",
+        "type": "ADJ",
+        "value": 1,
+        "x": -17.301101684570312,
+        "y": 11.72900390625
+      },
+      {
+        "attitude": 0.0,
+        "name": "stick",
+        "type": "VERB",
+        "value": 1,
+        "x": 6.5259270668029785,
+        "y": -1.8007748126983643
+      },
+      {
+        "attitude": 0.0,
+        "name": "store",
+        "type": "NOUN",
+        "value": 1,
+        "x": 6.877917766571045,
+        "y": -9.34919548034668
+      },
+      {
+        "attitude": 0.0,
+        "name": "story",
+        "type": "NOUN",
+        "value": 1,
+        "x": 3.479177713394165,
+        "y": -13.928353309631348
+      },
+      {
+        "attitude": 0.0,
+        "name": "study",
+        "type": "NOUN",
+        "value": 6,
+        "x": 5.290647029876709,
+        "y": -4.673793792724609
+      },
+      {
+        "attitude": 0.0,
+        "name": "surround",
+        "type": "VERB",
+        "value": 3,
+        "x": 2.4410648345947266,
+        "y": -0.24328722059726715
+      },
+      {
+        "attitude": 0.0,
+        "name": "symmetrical",
+        "type": "ADJ",
+        "value": 1,
+        "x": -12.223146438598633,
+        "y": 10.090683937072754
+      },
+      {
+        "attitude": 0.0,
+        "name": "table",
+        "type": "NOUN",
+        "value": 3,
+        "x": 4.269152641296387,
+        "y": -18.393735885620117
+      },
+      {
+        "attitude": 0.0,
+        "name": "talk",
+        "type": "NOUN",
+        "value": 2,
+        "x": 9.205368041992188,
+        "y": -4.2007365226745605
+      },
+      {
+        "attitude": 0.0,
+        "name": "tall",
+        "type": "ADJ",
+        "value": 4,
+        "x": -13.085948944091797,
+        "y": 10.911887168884277
+      },
+      {
+        "attitude": 0.0,
+        "name": "tartan",
+        "type": "ADJ",
+        "value": 1,
+        "x": -5.49855375289917,
+        "y": 3.893024206161499
+      },
+      {
+        "attitude": 0.0,
+        "name": "tend",
+        "type": "VERB",
+        "value": 1,
+        "x": 7.629222393035889,
+        "y": 2.077672004699707
+      },
+      {
+        "attitude": 0.0,
+        "name": "think",
+        "type": "VERB",
+        "value": 2,
+        "x": 7.367616653442383,
+        "y": 1.2645642757415771
+      },
+      {
+        "attitude": 0.0,
+        "name": "though",
+        "type": "ADP",
+        "value": 1,
+        "x": 2.418752908706665,
+        "y": 12.941011428833008
+      },
+      {
+        "attitude": 0.0,
+        "name": "through",
+        "type": "ADP",
+        "value": 1,
+        "x": 2.184116840362549,
+        "y": 13.034860610961914
+      },
+      {
+        "attitude": 0.0,
+        "name": "throughway",
+        "type": "INTJ",
+        "value": 1,
+        "x": -0.9842419624328613,
+        "y": 5.506934642791748
+      },
+      {
+        "attitude": 0.0,
+        "name": "time",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.559834003448486,
+        "y": -12.83925724029541
+      },
+      {
+        "attitude": 0.5,
+        "name": "top",
+        "type": "ADJ",
+        "value": 1,
+        "x": -5.99333381652832,
+        "y": 6.592571258544922
+      },
+      {
+        "attitude": 0.0,
+        "name": "traffic",
+        "type": "NOUN",
+        "value": 2,
+        "x": 6.4043169021606445,
+        "y": -15.083210945129395
+      },
+      {
+        "attitude": -0.7,
+        "name": "ugly",
+        "type": "ADJ",
+        "value": 2,
+        "x": -14.270292282104492,
+        "y": 14.933294296264648
+      },
+      {
+        "attitude": -0.5,
+        "name": "uncomfortable",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.299797058105469,
+        "y": 12.81105899810791
+      },
+      {
+        "attitude": 0.0,
+        "name": "unconventional",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.097407341003418,
+        "y": 11.24516773223877
+      },
+      {
+        "attitude": 0.375,
+        "name": "unique",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.546384811401367,
+        "y": 10.97869873046875
+      },
+      {
+        "attitude": 0.0,
+        "name": "up",
+        "type": "PART",
+        "value": 8,
+        "x": 0.7128360867500305,
+        "y": 12.145856857299805
+      },
+      {
+        "attitude": 0.0,
+        "name": "upstairs",
+        "type": "ADV",
+        "value": 2,
+        "x": -1.4537729024887085,
+        "y": 6.793772220611572
+      },
+      {
+        "attitude": 0.0,
+        "name": "use",
+        "type": "NOUN",
+        "value": 3,
+        "x": 7.592223167419434,
+        "y": -5.61196756362915
+      },
+      {
+        "attitude": 0.3,
+        "name": "useful",
+        "type": "ADJ",
+        "value": 1,
+        "x": -14.742497444152832,
+        "y": 13.267693519592285
+      },
+      {
+        "attitude": -0.5,
+        "name": "useless",
+        "type": "ADJ",
+        "value": 1,
+        "x": -17.762866973876953,
+        "y": 9.960113525390625
+      },
+      {
+        "attitude": -0.25,
+        "name": "usually",
+        "type": "ADV",
+        "value": 1,
+        "x": -2.7964887619018555,
+        "y": 16.03891372680664
+      },
+      {
+        "attitude": 0.0,
+        "name": "versatile",
+        "type": "ADJ",
+        "value": 1,
+        "x": -6.755347728729248,
+        "y": 11.220541954040527
+      },
+      {
+        "attitude": 0.0,
+        "name": "vibe",
+        "type": "NOUN",
+        "value": 1,
+        "x": -0.1140960082411766,
+        "y": -2.840496301651001
+      },
+      {
+        "attitude": 0.0,
+        "name": "wait",
+        "type": "VERB",
+        "value": 2,
+        "x": 8.033914566040039,
+        "y": 0.6909052729606628
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk",
+        "type": "VERB",
+        "value": 2,
+        "x": 5.777550220489502,
+        "y": -1.056248664855957
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk around",
+        "type": "VERB",
+        "value": 1,
+        "x": 3.393315553665161,
+        "y": 10.214015007019043
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk by",
+        "type": "VERB",
+        "value": 1,
+        "x": 3.843994617462158,
+        "y": 10.373918533325195
+      },
+      {
+        "attitude": 0.0,
+        "name": "walk through",
+        "type": "VERB",
+        "value": 1,
+        "x": 3.498185873031616,
+        "y": 10.230550765991211
+      },
+      {
+        "attitude": 0.0,
+        "name": "wall",
+        "type": "NOUN",
+        "value": 2,
+        "x": 4.698601245880127,
+        "y": -10.902338981628418
+      },
+      {
+        "attitude": 0.0,
+        "name": "well",
+        "type": "INTJ",
+        "value": 5,
+        "x": -6.316068172454834,
+        "y": 14.360236167907715
+      },
+      {
+        "attitude": 0.0,
+        "name": "well lit",
+        "type": "ADV",
+        "value": 1,
+        "x": 1.9955145120620728,
+        "y": 8.71545696258545
+      },
+      {
+        "attitude": 0.0,
+        "name": "white",
+        "type": "ADJ",
+        "value": 2,
+        "x": -7.561251163482666,
+        "y": 10.06870174407959
+      },
+      {
+        "attitude": 0.0,
+        "name": "wing",
+        "type": "NOUN",
+        "value": 1,
+        "x": 4.4267754554748535,
+        "y": -16.191694259643555
+      },
+      {
+        "attitude": 0.7,
+        "name": "wise",
+        "type": "ADJ",
+        "value": 1,
+        "x": -12.351720809936523,
+        "y": 12.810497283935547
+      },
+      {
+        "attitude": 0.0,
+        "name": "work",
+        "type": "NOUN",
+        "value": 1,
+        "x": 7.053077697753906,
+        "y": -10.949934005737305
+      },
+      {
+        "attitude": 0.0,
+        "name": "yellow",
+        "type": "ADJ",
+        "value": 2,
+        "x": -12.215804100036621,
+        "y": 4.852292060852051
+      }
+    ],
+    "name": 3,
+    "value": 500
+  }
+]</script>
         <h2 class="mod-singular-hdng">Word/phrase analysis</h2> 
         <div class="container">
 
@@ -222,16 +5710,169 @@ $(function() {
       </div>
     </section>
 
-    <!--page_7 More visualization-->  
+    <!--page_7 More visualization-->
     <section id="sec07" class="mod-singular-section">
+      <script>
+      var STATISTICS_WORD = [
+{
+    "nodes":[
+      {"name":"all"},{"name":"general"},{"name":"nice"},{"name":"moderate"},{"name":"effective"},{"name":"elegant"},{"name":"busy"},{"name":"good"},{"name":"size"},{"name":"spacious"},{"name":"big"},{"name":"huge"},{"name":"use"},{"name":"useful"},{"name":"useless"},{"name":"shape"},{"name":"circular"},{"name":"cylindrical"},{"name":"square"},{"name":"oval"},{"name":"open"},{"name":"height"},{"name":"tall"},{"name":"double-height"},{"name":"high"},{"name":"color"},{"name":"yellow"},{"name":"black"},{"name":"tartan"},{"name":"gray"},{"name":"white"},{"name":"activity"},{"name":"eat"},{"name":"sleep"},{"name":"hang out"},{"name":"throw events"},{"name":"meet"},{"name":"sit"},{"name":"pass by"},{"name":"material"},{"name":"brick"},{"name":"white wall"},{"name":"carpet"},{"name":"features"},{"name":"flags"},{"name":"staircases"},{"name":"chair"},{"name":"access"},{"name":"revolving door"},{"name":"acoustic"},{"name":"noisy"},{"name":"hear everything"},{"name":"loud"},{"name":"social"},{"name":"public"},{"name":"communal"},{"name":"individual"},{"name":"not awkward"},{"name":"a lot of people"},{"name":"lighting"},{"name":"skylight"},{"name":"natural light"},{"name":"bright"},{"name":"dark"},{"name":"not beautiful"},{"name":"cramped"}
+    ],
+  
+  
+    "links":[
+      {"source":"all","target":"general","value":"48"},
+          {"source":"general","target":"nice", "value":"6"},
+          {"source":"general","target":"moderate", "value":"2"},
+          {"source":"general","target":"effective", "value":"3"},
+          {"source":"general","target":"elegant", "value":"1"},
+          {"source":"general","target":"busy", "value":"7"},
+          {"source":"general","target":"good", "value":"16"},
+          {"source":"general","target":"not beautiful", "value":"2"},
+          {"source":"general","target":"size", "value":"7"},
+              {"source":"size","target":"spacious","value":"2"},
+              {"source":"size","target":"big","value":"2"},
+              {"source":"size","target":"huge","value":"1"},
+              {"source":"size","target":"cramped","value":"2"},
+          {"source":"general","target":"use","value":"4"},
+              {"source":"use","target":"useful","value":"3"},
+              {"source":"use","target":"useless","value":"1"},
+      {"source":"all","target":"shape","value":"42"},
+          {"source":"shape","target":"circular","value":"13"},
+          {"source":"shape","target":"cylindrical","value":"1"},
+          {"source":"shape","target":"square","value":"5"},
+          {"source":"shape","target":"oval","value":"2"},
+          {"source":"shape","target":"height","value":"22"},
+              {"source":"height","target":"tall","value":"8"},
+              {"source":"height","target":"double-height","value":"8"},
+              {"source":"height","target":"high","value":"6"},
+      {"source":"all","target":"color","value":"38"},
+          {"source":"color","target":"yellow","value":"5"},
+          {"source":"color","target":"black","value":"24"},
+          {"source":"color","target":"tartan","value":"4"},
+          {"source":"color","target":"gray","value":"2"},
+          {"source":"color","target":"white","value":"3"},
+      {"source":"all","target":"activity","value":"70"},
+          {"source":"activity","target":"eat","value":"12"},
+          {"source":"activity","target":"sleep","value":"3"},
+          {"source":"activity","target":"hang out","value":"10"},
+          {"source":"activity","target":"throw events","value":"14"},
+          {"source":"activity","target":"meet","value":"11"},
+          {"source":"activity","target":"sit","value":"7"},
+          {"source":"activity","target":"pass by","value":"13"},
+      {"source":"all","target":"material","value":"26"},
+          {"source":"material","target":"brick","value":"13"},
+          {"source":"material","target":"white wall","value":"5"},
+          {"source":"material","target":"carpet","value":"8"},
+      {"source":"all","target":"features","value":"58"},
+          {"source":"features","target":"flags","value":"6"},
+          {"source":"features","target":"staircases","value":"20"},
+          {"source":"features","target":"chair","value":"25"},
+          {"source":"features","target":"access","value":"6"},
+          {"source":"features","target":"revolving door","value":"1"},
+      {"source":"all","target":"acoustic","value":"21"},
+          {"source":"acoustic","target":"noisy","value":"8"},
+          {"source":"acoustic","target":"hear everything","value":"6"},
+          {"source":"acoustic","target":"loud","value":"7"},
+      {"source":"all","target":"social","value":"58"},
+          {"source":"social","target":"public","value":"4"},
+          {"source":"social","target":"communal","value":"1"},
+          {"source":"social","target":"open","value":"27"},
+          {"source":"social","target":"individual","value":"2"},
+          {"source":"social","target":"not awkward","value":"3"},
+          {"source":"social","target":"a lot of people","value":"23"},
+      {"source":"all","target":"lighting","value":"12"},
+          {"source":"lighting","target":"skylight","value":"1"},
+          {"source":"lighting","target":"natural light","value":"3"},
+          {"source":"lighting","target":"bright","value":"3"},
+          {"source":"lighting","target":"dark","value":"2"}
+    ]
+  },
+   {
+    "nodes":[
+      {"name":"all"},{"name":"general"},{"name":"nice"},{"name":"moderate"},{"name":"effective"},{"name":"elegant"},{"name":"busy"},{"name":"good"},{"name":"size"},{"name":"spacious"},{"name":"big"},{"name":"huge"},{"name":"shape"},{"name":"circular"},{"name":"cylindrical"},{"name":"square"},{"name":"oval"},{"name":"open"},{"name":"height"},{"name":"tall"},{"name":"double-height"},{"name":"high"},{"name":"color"},{"name":"yellow"},{"name":"black"},{"name":"tartan"},{"name":"gray"},{"name":"white"},{"name":"activity"},{"name":"eat"},{"name":"sleep"},{"name":"hang out"},{"name":"throw events"},{"name":"meet"},{"name":"sit"},{"name":"pass by"},{"name":"material"},{"name":"brick"},{"name":"white wall"},{"name":"carpet"},{"name":"features"},{"name":"flags"},{"name":"staircases"},{"name":"chair"},{"name":"access"},{"name":"revolving door"},{"name":"acoustic"},{"name":"noisy"},{"name":"hear everything"},{"name":"loud"},{"name":"social"},{"name":"public"},{"name":"communal"},{"name":"individual"},{"name":"not awkward"},{"name":"a lot of people"},{"name":"lighting"},{"name":"skylight"},{"name":"natural light"},{"name":"bright"},{"name":"dark"},{"name":"cramped"},{"name":"circulation"}
+    ],
+  
+  
+    "links":[
+      {"source":"all","target":"general","value":"78"},
+          {"source":"general","target":"nice", "value":"9"},
+          {"source":"general","target":"moderate", "value":"2"},
+          {"source":"general","target":"effective", "value":"3"},
+          {"source":"general","target":"elegant", "value":"6"},
+          {"source":"general","target":"busy", "value":"7"},
+          {"source":"general","target":"good", "value":"20"},
+          {"source":"general","target":"size", "value":"31"},
+              {"source":"size","target":"spacious","value":"8"},
+              {"source":"size","target":"big","value":"20"},
+              {"source":"size","target":"huge","value":"1"},
+              {"source":"size","target":"cramped","value":"2"},
+      {"source":"all","target":"shape","value":"69"},
+          {"source":"shape","target":"circular","value":"26"},
+          {"source":"shape","target":"cylindrical","value":"20"},
+          {"source":"shape","target":"square","value":"5"},
+          {"source":"shape","target":"oval","value":"8"},
+          {"source":"shape","target":"height","value":"36"},
+              {"source":"height","target":"tall","value":"10"},
+              {"source":"height","target":"double-height","value":"24"},
+              {"source":"height","target":"high","value":"2"},
+      {"source":"all","target":"color","value":"62"},
+          {"source":"color","target":"yellow","value":"15"},
+          {"source":"color","target":"black","value":"24"},
+          {"source":"color","target":"tartan","value":"4"},
+          {"source":"color","target":"gray","value":"9"},
+          {"source":"color","target":"white","value":"10"},
+      {"source":"all","target":"activity","value":"61"},
+          {"source":"activity","target":"eat","value":"2"},
+          {"source":"activity","target":"sleep","value":"3"},
+          {"source":"activity","target":"hang out","value":"5"},
+          {"source":"activity","target":"throw events","value":"10"},
+          {"source":"activity","target":"meet","value":"6"},
+          {"source":"activity","target":"sit","value":"7"},
+          {"source":"activity","target":"pass by","value":"13"},
+          {"source":"activity","target":"circulation","value":"15"},
+      {"source":"all","target":"material","value":"31"},
+          {"source":"material","target":"brick","value":"13"},
+          {"source":"material","target":"white wall","value":"10"},
+          {"source":"material","target":"carpet","value":"8"},
+      {"source":"all","target":"features","value":"57"},
+          {"source":"features","target":"flags","value":"6"},
+          {"source":"features","target":"staircases","value":"10"},
+          {"source":"features","target":"chair","value":"25"},
+          {"source":"features","target":"access","value":"6"},
+          {"source":"features","target":"revolving door","value":"10"},
+      {"source":"all","target":"acoustic","value":"15"},
+          {"source":"acoustic","target":"noisy","value":"6"},
+          {"source":"acoustic","target":"hear everything","value":"2"},
+          {"source":"acoustic","target":"loud","value":"7"},
+      {"source":"all","target":"social","value":"96"},
+          {"source":"social","target":"public","value":"4"},
+          {"source":"social","target":"communal","value":"6"},
+          {"source":"social","target":"open","value":"45"},
+          {"source":"social","target":"individual","value":"8"},
+          {"source":"social","target":"a lot of people","value":"33"},
+      {"source":"all","target":"lighting","value":"48"},
+          {"source":"lighting","target":"skylight","value":"16"},
+          {"source":"lighting","target":"natural light","value":"18"},
+          {"source":"lighting","target":"bright","value":"8"},
+          {"source":"lighting","target":"dark","value":"6"}
+    ]
+  }
+  ]
+        
+      </script>
       <div class="mod-singular-section-in">
-        <h2 class="mod-singular-hdng">Sentence analysis</h2>
+        <h2 class="mod-singular-hdng">Category analysis</h2>
         <div class="container">
-          <div class="exp">
-            <p>Placeholder. More Visualization for the sentences/aspects mentioned... higher level stuff.
-            </p>
+          <div class="sankey">
+            <select onchange="changeSankey(this)">
+              <option value="" selected disabled hidden>Response for:</option>
+              <option value="0">Description</option>
+              <option value="1">Visualization</option>
+            </select>
           </div>
         </div>
+        <script src ="./js/sec07sankey.js"></script>
         <!--next_page_button-->
         <p class="mod-singular-pager"><a href="" class="mod-singular-next js-singular-next"></a></p>
         <!--next_page_button-->
@@ -241,7 +5882,24 @@ $(function() {
     <!--page_8 Conclusion-->  
     <section id="sec08" class="mod-singular-section">
       <div class="mod-singular-section-in">
-        <h2 class="mod-singular-hdng">Conclusions and Proposal for spring</h2>       
+        <h2 class="mod-singular-hdng">Conclusions and proposal for spring</h2>     <div class="container">
+          <div class="exp">
+            <h3>Some findings:</h3>
+            <p>The interviews were done as a general inquiry. The dataset is small, and the dataset processing isn't the most rigorous, since the intention is not to really understand what UC Black Chairs, but rather, to understand generally how people talk about space. However, there are still interesting patterns to be recognized:</p>
+            <p>1. Architecture students tend to notice the same things, at least in the UC Black Chairs, whether they often use the space for events/studying or merely passing by everyday. The variation isn't as great as expected. (However, non-architecture students have various foci and understandings of the space: some of them don't even pay attention to the building);</p>
+            <p>2. Different people have their own sujective vocabulary, but tend to use the same set of words for objective descriptions. The subjective language is usually more "jargon-y", while the common ones are simple but informative;</p>
+            <p>3. Activities (in the space) matter. It helps them imagine being positioned in the space. People who are more familiar with the space are more aware of its other possibilities;</p>
+            <p>4. A general approach: qualitative comment -> identify elements -> describing elements.</p>
+          </div>
+          <div class="exp3">
+            <h3>Next semester:</h3>
+            <p>In general, I wish to be more focused on the generative process ("encoding" vs "decoding"). The followings are some broad directions.</p>
+            <p>1. Over the winter break, further compile and analyze the interviews (actually learn NLP, syntax dependency parsings, etc... this time). Try to manually "redesign" the space based on the interview and find more potential patterns and sequences of designing with language;</p>
+            <p>2. In the next semester, mostly stay analog. Manually construct decision trees and logic models before visualizing/tieing down to parameters;</p>
+            <p>3. OR In the next semester, go back to the idea of using machine-learning and parametric modeling, but only study the "most common words" presented. Have a selection of "advanced words" and program them mannually;</p>
+            <p>...</p>
+          </div>
+        </div>
       </div>
     </section>
 
