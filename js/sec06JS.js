@@ -1,8 +1,8 @@
-var typeList = ["NOUN", "ADJ", "ADV", "ADP", "DET", "VERB", "X", "PART", "INTJ"]
+  var typeList = ["NOUN", "ADJ", "ADV", "ADP", "DET", "VERB", "X", "PART", "INTJ"]
 
-var filterTypeList = typeList;
+  var filterTypeList = typeList;
 
-var colorList = ['#eb652d','#edf397','#52deb6','#2deb65','#deb652','#eb2d65','#b2d65e','#2d65eb',"#d65eb2"];
+  var colorList = ['#eb652d','#edf397','#52deb6','#2deb65','#deb652','#eb2d65','#b2d65e','#2d65eb',"#d65eb2"];
 
 
 var zoomBubbles = d3.behavior.zoom()
@@ -47,7 +47,7 @@ function drawBubble(idx, colorMode){
                 .range(["#2d65eb","#eb652d"])
   
   var nodes = pack.nodes(INTERVIEW_WORDS[idx]);
-  
+
   nodes = nodes.filter(node => filterTypeList.includes(node.type));
 
   var circles = containerBubbles.selectAll("circle")
